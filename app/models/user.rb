@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
     validates :email, {presence: true, uniqueness: true}
     validates :display_name, {presence: true}
-    validates :credential, presence: true
     validates :spotify_id, {presence: true, uniqueness: true}
 
     ### CALLBACKS
