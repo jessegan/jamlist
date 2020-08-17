@@ -1,0 +1,28 @@
+<img src='<%= @user.image %>'>
+<p>Logging in as: <%= @user.display_name %></p>
+<p>Email: <%= @user.email %></p>
+
+<br>
+
+<%= form_for @user, url: '/signup', method: 'POST' do |f| %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :display_name %>
+    <%= f.hidden_field :image %>
+    <%= f.hidden_field :spotify_id %>
+
+    <%= f.fields_for :credential do |c| %>
+        <%= c.hidden_field :token %>
+        <%= c.hidden_field :refresh_token %>
+        <%= c.hidden_field :expires_at %>
+        <%= c.hidden_field :expires %>
+    <% end %>
+
+    <%= f.label :password, "Create a password for your account" %>
+    <%= f.text_field :password %>
+    <br>
+    <%= f.label :password_confirmation, "Confirm password" %>
+    <%= f.text_field :password_confirmation %>
+
+    <br>
+    <%= f.submit "Create Account" %>
+<% end %>
