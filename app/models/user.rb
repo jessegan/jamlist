@@ -2,10 +2,12 @@ class User < ApplicationRecord
     ### ASSOCIATIONS
 
     has_one :credential, class_name: "SpotifyCredential", foreign_key: "user_id", dependent: :destroy
-    has_many :members, dependent: :destroy
-    has_many :groups, through: :members
     accepts_nested_attributes_for :credential
 
+    has_many :members, dependent: :destroy
+    has_many :groups, through: :members
+    has_many :owned_groups, class_name: "Group", foreign_key: "owner_id"
+ 
     ### VALIDATIONS
 
     has_secure_password
@@ -20,6 +22,9 @@ class User < ApplicationRecord
 
 
     ### INSTANCE METHODS
+
+    def managed_groups
+    end
     
     def to_rspotify_hash
         {id: self.spotify_id, credentials: self.credential.to_rspotify_hash}

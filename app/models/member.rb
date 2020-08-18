@@ -6,6 +6,5 @@ class Member < ApplicationRecord
 
     ### VALIDATIONS
     attribute :admin, :boolean, default: false
-    attribute :creator, :boolean, default: false
 
 end
