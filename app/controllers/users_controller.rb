@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     def spotify
         # Find if there is already an account with the same Spotify I
         if User.exists?(spotify_id: auth_params['id'])
-            session[:user_id] = 
+            
 
         else  
          # If no, render create account form with params
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     # Create user route
     # Will create a user and redirect to home page
     def create
-        binding.pry
         @user = User.new(user_params)
         if @user.save
             @user.create_credential(credential_params)
@@ -53,7 +52,7 @@ class UsersController < ApplicationController
     end
 
     def credential_params
-        params.require(:user).permit(credential_attributes: [:token,:refresh_token,:expires_at,:expires])
+        params.require(:user).require(:credential_attributes).permit(:token,:refresh_token,:expires_at,:expires)
     end
 
 end
