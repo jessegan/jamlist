@@ -4,10 +4,12 @@ class UsersController < ApplicationController
     # Callback route.
     # Handles Spotify authentication and redirects to either home page or create user page
     def spotify
-        # Find if there is already an account with the same Spotify I
-        if User.exists?(spotify_id: auth_params['id'])
-            
+        # Find if there is already an account with the same Spotify
 
+        if User.exists?(spotify_id: auth_params_info['id'])
+            session[:user_id] = User.find_by(spotify_id: auth_params_info['id']).id
+
+            redirect_to home_path
         else  
          # If no, render create account form with params
             @user = User.new(email: auth_params_info['email'], spotify_id: auth_params_info['id'], image: auth_params_info['images'][0]['url'], display_name:  auth_params_info['display_name'])
@@ -27,7 +29,7 @@ class UsersController < ApplicationController
 
             session[:user_id] = @user.id
 
-            redirect_to root_path
+            redirect_to home_path
         else
             render 'new'
         end
