@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     def spotify
         # Find if there is already an account with the same Spotify I
         if User.exists?(spotify_id: auth_params['id'])
-            # If yes, find that user, update their images url and email, save user_id in sessions THEN redirect to home page
+            session[:user_id] = 
 
         else  
          # If no, render create account form with params
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
             redirect_to root_path
         else
-            flash[:error] = @user.errors.full_messages
             render 'new'
         end
     end
