@@ -2,6 +2,8 @@ class User < ApplicationRecord
     ### ASSOCIATIONS
 
     has_one :credential, class_name: "SpotifyCredential", foreign_key: "user_id", dependent: :destroy
+    has_many :members, dependent: :destroy
+    has_many :groups, through: :members
     accepts_nested_attributes_for :credential
 
     ### VALIDATIONS
