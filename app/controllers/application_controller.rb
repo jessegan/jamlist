@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+    helper_method :current_user
+
     def require_signed_in
         if !user_signed_in?
             #TODO: Add flash alert
