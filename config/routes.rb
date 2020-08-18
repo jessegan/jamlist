@@ -13,4 +13,8 @@ Rails.application.routes.draw do
 
   post '/logout', to: 'sessions#logout'
 
+  ### GROUPS
+  get '/home', to: 'groups#home', as: 'home'
+  resources :groups
+
 end
