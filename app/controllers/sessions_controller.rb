@@ -15,6 +15,12 @@ class SessionsController < ApplicationController
         end
     end
 
+    def logout
+        session.destroy :user_id
+
+        redirect_to root_path
+    end
+
     private
 
     def user_params
