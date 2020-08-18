@@ -1,1 +1,15 @@
+<!-- User's Created Groups -->
+<h1>Your Owned Groups</h1>
+<ul>
+    <% current_user.owned_groups.each do |g| %>
+        <li><%= g.name %></li>
+    <% end %>
+</ul>
+
+<!-- User's Joined Groups -->
+
+<h1>Groups</h1>
+
+
+
 <%= link_to "Logout", logout_path, method: :post %>
