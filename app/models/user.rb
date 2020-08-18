@@ -20,11 +20,7 @@ class User < ApplicationRecord
 
     before_validation :lowercase_email_before_validation
 
-
     ### INSTANCE METHODS
-
-    def managed_groups
-    end
     
     def to_rspotify_hash
         {id: self.spotify_id, credentials: self.credential.to_rspotify_hash}
