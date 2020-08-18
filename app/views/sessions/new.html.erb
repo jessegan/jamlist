@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<%= form_for @user, url: '/login' do |f| %>
+<%= form_for @user, url: '/login', method: 'POST' do |f| %>
     <div>
         <%= f.label :email, "Email" %>
         <%= f.text_field :email %>
