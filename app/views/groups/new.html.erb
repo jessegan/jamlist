@@ -1,0 +1,24 @@
+<h1>New Group</h1>
+
+<%= form_for @group do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div>
+        <%= f.label :description %>
+        <br>
+        <%= f.text_area :description, placeholder: "(optional)" %>
+    </div>
+
+    <div>
+        <%= f.label :public %>
+        <%= f.check_box :public %>
+    </div>
+
+    <div>
+        <%= f.submit "Create Group" %>
+    </div>
+
+<% end %>
