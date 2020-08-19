@@ -25,7 +25,7 @@ class Group < ApplicationRecord
     private
 
     def add_owner_to_members
-        if !self.members.exists?(user: self.owner)
+        if self.owner && !self.members.exists?(user: self.owner)
             self.members.create(user: self.owner, admin: true)
         end
     end
