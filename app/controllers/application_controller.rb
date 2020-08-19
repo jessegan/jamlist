@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def redirect_if_signed_in
+        if user_signed_in?
+            redirect_to home_path
+        end
+    end
+
     def user_signed_in?
         !!session[:user_id]
     end
