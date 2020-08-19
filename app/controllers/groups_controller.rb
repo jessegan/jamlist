@@ -49,6 +49,24 @@ class GroupsController < ApplicationController
         end
     end
 
+    ## edit
+    # Edit group route
+    # Form to edit group details
+    def edit
+        current_group
+    end
+
+    ## update
+    # update group route
+    # Handle updating group info
+    def update
+        if current_group.update(group_params)
+            redirect_to current_group
+        else
+            render :edit
+        end
+    end
+
     ## join
     # Join Group route
     # Add current to group and then redirect to group show page
