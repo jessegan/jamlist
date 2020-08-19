@@ -25,6 +25,10 @@ class User < ApplicationRecord
 
     ### INSTANCE METHODS
 
+    def new_group(attributes=nil)
+        self.owned_groups.build(attributes)
+    end
+
     def groups_joined_not_owned
         self.groups.where.not(owner: self)
     end
