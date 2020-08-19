@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
     before_action :require_signed_in
     before_action :require_member_of_group_if_private, only: [:show]
+    before_action :require_admin_of_group, only: [:edit]
 
     ### ACTIONS
 
@@ -88,6 +89,14 @@ class GroupsController < ApplicationController
         current_user.is_member?(group)
     end
 
+    def owner_of(group)
+        current_user.is_owner?(group)
+    end
+
+    def admin_of(group)
+        current_user.is_admin?(group)
+    end
+
     def require_member_of_group
         if !member_of(current_group)
             # TODO: Add flash alert
@@ -98,6 +107,13 @@ class GroupsController < ApplicationController
     def require_member_of_group_if_private
         if !current_group.public
             require_member_of_group
+        end
+    end
+
+    def require_admin_of_group
+        if !admin_of(current_group)
+            # TODO: add flash alert
+            redirect_back fallback_location: current_group
         end
     end
 
