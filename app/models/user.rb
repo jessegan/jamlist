@@ -28,6 +28,10 @@ class User < ApplicationRecord
     def groups_joined_not_owned
         self.groups.where.not(owner: self)
     end
+
+    def is_member?(group)
+        self.groups.include?(group)
+    end
     
     def to_rspotify_hash
         {id: self.spotify_id, credentials: self.credential.to_rspotify_hash}
