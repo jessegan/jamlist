@@ -7,4 +7,8 @@ class Member < ApplicationRecord
     ### VALIDATIONS
     attribute :admin, :boolean, default: false
 
+    ### SCOPES
+
+    scope :admins, -> {where(admin:true)}
+
 end

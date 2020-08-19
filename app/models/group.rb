@@ -26,6 +26,10 @@ class Group < ApplicationRecord
         self.users << user
     end
 
+    def admins
+        self.users.merge(Member.admins)
+    end
+
     private
 
     def add_owner_to_members

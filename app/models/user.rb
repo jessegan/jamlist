@@ -36,6 +36,14 @@ class User < ApplicationRecord
     def is_member?(group)
         self.groups.include?(group)
     end
+
+    def is_owner?(group)
+        self.owned_groups.include?(group)
+    end
+
+    def is_admin?(group)
+        group.admins.include?(self)
+    end
     
     def to_rspotify_hash
         {id: self.spotify_id, credentials: self.credential.to_rspotify_hash}
