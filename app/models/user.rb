@@ -20,11 +20,13 @@ class User < ApplicationRecord
 
     before_validation :lowercase_email_before_validation
 
-    ### INSTANCE METHODS
+    ### SCOPES
 
     def groups_joined_not_owned
         self.groups.where.not(owner: self)
     end
+
+    ### INSTANCE METHODS
     
     def to_rspotify_hash
         {id: self.spotify_id, credentials: self.credential.to_rspotify_hash}
