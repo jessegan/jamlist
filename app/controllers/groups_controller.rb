@@ -8,8 +8,12 @@ class GroupsController < ApplicationController
     def home
     end
 
-    
-
+    ## index
+    # Browse groups route
+    # List all public groups -> allow users to join
+    def index
+        @groups = Group.public_only
+    end
 
 
 end
