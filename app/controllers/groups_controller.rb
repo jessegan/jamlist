@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
 
     ### HELPERS
 
-    helper_method :current_group, :member_of
+    helper_method :current_group, :member_of, :admin_of, :owner_of
 
     ### CALLBACKS
 
@@ -66,6 +66,15 @@ class GroupsController < ApplicationController
         else
             render :edit
         end
+    end
+
+    ## destroy
+    # destory group route
+    # Handle deleting a group
+    def destroy
+        current_group.destroy
+
+        redirect_to home_path
     end
 
     ## join
