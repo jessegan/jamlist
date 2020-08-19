@@ -21,6 +21,9 @@ class Group < ApplicationRecord
 
     ### INSTANCE METHODS
 
+    def add_member(user)
+        self.users << user
+    end
 
     private
 
