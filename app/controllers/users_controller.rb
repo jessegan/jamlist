@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+    ### CALLBACKS
+
+    before_action :redirect_if_signed_in, only: [:spotify]
+
+
     ## Spotify
     # Callback route.
     # Handles Spotify authentication and redirects to either home page or create user page

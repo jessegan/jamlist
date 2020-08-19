@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+    ### CALLBACKS
+    
+    before_action :redirect_if_signed_in, only: [:new,:create]
+
     def new
         @user = User.new
     end
