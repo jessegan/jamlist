@@ -1,7 +1,7 @@
 <h1><%= current_group.name %></h1>
 
 <% if !member_of(current_group) %>
-    <%= button_to "Join Group", "/" %>
+    <%= button_to "Join Group", join_group_path(current_group), method: :post %>
 <% end %>
 
 <h2>Playlists</h2>
