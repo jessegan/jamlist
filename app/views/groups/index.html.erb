@@ -1,6 +1,6 @@
 <h1>Browse Groups</h1>
 <ul>
     <% @groups.each do |g| %>
-        <li><%= link_to g.name,g %></li>
+        <li><%= link_to g.name,g %><%= ' [joined]' if member_of(g) %></li>
     <% end %>
 </ul>
