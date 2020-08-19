@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :current_user
+    helper_method :current_user, :user_signed_in?
 
     ## require_signed_in
     # Redirect to login page if user accessing a page they need to be signed in on
