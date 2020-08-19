@@ -1,11 +1,9 @@
-
-
 <!-- User's Created Groups -->
 
 <h1>Your Owned Groups</h1>
 <ul>
     <% current_user.owned_groups.each do |g| %>
-        <li><%= g.name %></li>
+        <li><%= link_to g.name,g %></li>
     <% end %>
 </ul>
 
@@ -21,11 +19,4 @@
 <!-- Browse Groups -->
 <div>
     <%= button_to "Browse Groups", groups_path, method: :get %>
-</div>
-
-<br>
-
-<!-- Logout -->
-<div>
-<%= link_to "Logout", logout_path, method: :post %>
 </div>
