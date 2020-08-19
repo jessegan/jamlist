@@ -9,6 +9,7 @@ class Group < ApplicationRecord
 
     validates :name, presence: true
     attribute :public, :boolean, default: true
+    validates :description, length: {max: 500}
 
     ### CALLBACKS
 
