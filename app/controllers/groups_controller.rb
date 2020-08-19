@@ -1,8 +1,13 @@
 class GroupsController < ApplicationController
 
+    ### HELPERS
+
+    helper_method :current_group, :member_of
+
     ### CALLBACKS
 
     before_action :require_signed_in
+    before_action :require_member_of_group_if_private, only: [:show]
 
     ### ACTIONS
 
@@ -25,8 +30,18 @@ class GroupsController < ApplicationController
     def show
     end
 
+    ## join
+    # Join Group route
+    # Add current to group and then redirect to group show page
+    def join
+        if !member_of(current_group)
+            current_group.add_member(current_user)
+            
+            redirect_to current_group
+        end
+    end
+
     ### HELPERS
-    helper_method :current_group, :member_of
 
     def current_group
         @group ||= Group.find(params[:id])      
@@ -40,6 +55,12 @@ class GroupsController < ApplicationController
         if !member_of(current_group)
             # TODO: Add flash alert
             redirect_back fallback_location: home_path
+        end
+    end
+
+    def require_member_of_group_if_private
+        if !current_group.public
+            require_member_of_group
         end
     end
 
