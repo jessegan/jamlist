@@ -1,5 +1,9 @@
 <h1><%= current_group.name %></h1>
 
+<% if !member_of(current_group) %>
+    <%= button_to "Join Group", "/" %>
+<% end %>
+
 <h2>Playlists</h2>
 <p>Insert list of playlists here</p>
 
