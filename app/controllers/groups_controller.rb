@@ -30,6 +30,25 @@ class GroupsController < ApplicationController
     def show
     end
 
+    ## new
+    # New group route
+    # Form to create new group
+    def new
+        @group = current_user.new_group()
+    end
+
+    ## create
+    # create group route
+    # Handles group creation
+    def create
+        @group = current_user.new_group(group_params)
+        if @group.save
+            redirect_to @group
+        else
+            render :new
+        end
+    end
+
     ## join
     # Join Group route
     # Add current to group and then redirect to group show page
@@ -62,6 +81,12 @@ class GroupsController < ApplicationController
         if !current_group.public
             require_member_of_group
         end
+    end
+
+    private 
+
+    def group_params
+        params.require(:group).permit(:name,:description,:public)
     end
 
 end
