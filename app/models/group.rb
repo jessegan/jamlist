@@ -16,6 +16,8 @@ class Group < ApplicationRecord
 
     ### SCOPES
 
+    scope :public_only, -> {where(public: true)}
+    scope :private_only, -> {where(public: false)}
 
     ### INSTANCE METHODS
 
