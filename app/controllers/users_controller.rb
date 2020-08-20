@@ -68,6 +68,17 @@ class UsersController < ApplicationController
         end
     end
 
+    ## destroy
+    # destroy user route
+    # handles deleting a user's own profile
+    def destroy
+        @user_profile.destroy
+
+        logout
+        
+        redirect_to root_path
+    end
+
     private
 
     def auth_params
