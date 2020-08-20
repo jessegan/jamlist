@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     # update user route
     # handles updating user's attributes
     def update
-        if @user_profile && @user_profile.save 
+        if @user_profile.update(user_params)
             # TODO: add flash message
             redirect_to @user_profile
         else
