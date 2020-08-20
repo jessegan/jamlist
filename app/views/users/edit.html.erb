@@ -10,3 +10,7 @@
         <%= f.submit "Save" %>
     </div>
 <% end %>
+
+<div>
+    <%= button_to "Delete Your Account", @user_profile, method: :delete, data: {confirm: "Are you sure you want to delete your account?"} %>
+</div>
