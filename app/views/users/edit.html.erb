@@ -1,0 +1,12 @@
+<h1>Edit Profile</h1>
+
+<%= form_for @user_profile do |f| %>
+    <div>
+        <%= f.label :display_name, "Change your display name" %>
+        <%= f.text_field :display_name %>
+    </div>
+
+    <div>
+        <%= f.submit "Save" %>
+    </div>
+<% end %>
