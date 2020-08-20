@@ -37,4 +37,10 @@ class ApplicationController < ActionController::Base
         @spotify_user ||= RSpotify::User.new(current_user.to_rspotify_hash)
     end
 
+    ## logout
+    # delete's the user_id from session
+    def logout
+        session.delete :user_id
+    end
+
 end
