@@ -22,9 +22,12 @@ class User < ApplicationRecord
 
     ### SCOPES
 
-    scope :owned_groups_public_only, -> {self.owned_groups.public_only}
-
+ 
     ### INSTANCE METHODS
+
+    def owned_groups_public_only
+        self.owned_groups.public_only
+    end
 
     def new_group(attributes=nil)
         self.owned_groups.build(attributes)
