@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     ### CALLBACKS
 
     before_action :redirect_if_signed_in, only: [:spotify]
+    before_action :require_signed_in, :set_user, only: [:show,:edit,:update,:destroy]
 
 
     ## Spotify
@@ -40,6 +41,12 @@ class UsersController < ApplicationController
         end
     end
 
+    ## show
+    # show user route
+    # shows a user's profile
+    def show
+    end
+
     private
 
     def auth_params
@@ -60,6 +67,12 @@ class UsersController < ApplicationController
 
     def credential_params
         params.require(:user).require(:credential_attributes).permit(:token,:refresh_token,:expires_at,:expires)
+    end
+
+    ## set_user
+    # sets @user to the user id given in params
+    def set_user
+        @user = User.find(params[:id])
     end
 
 end
