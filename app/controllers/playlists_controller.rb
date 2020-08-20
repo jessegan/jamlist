@@ -2,12 +2,19 @@ class PlaylistsController < ApplicationController
 
     ### HELPERS
 
-    helper_method :current_group
+    helper_method :current_group, :current_playlist
 
     ### CALLBACKS
 
+    before_action :require_playlist_in_group, only: [:show]
     
     ### ACTIONS
+
+    ## show
+    # show playlist route
+    # renders a playlist's page
+    def show
+    end
 
     ##new
     # new playlist route
@@ -36,6 +43,17 @@ class PlaylistsController < ApplicationController
 
     def current_group
         @group ||= Group.find(params[:group_id])
+    end
+
+    def current_playlist
+        @playlist ||= Playlist.find(params[:id])
+    end
+
+    def require_playlist_in_group
+        if !current_group.playlists.include?(current_playlist)
+            # TODO: add flash error
+            redirect_to current_group
+        end
     end
 
     def playlist_params
