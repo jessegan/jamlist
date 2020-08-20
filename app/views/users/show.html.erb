@@ -10,4 +10,5 @@
 
 <% if viewing_current_user %>
     <%= button_to "Edit Profile", edit_user_path(@user_profile), method: :get %>
+    <%= button_to "Logout", logout_path %>
 <% end %>
