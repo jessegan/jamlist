@@ -10,6 +10,7 @@
   <li><%= p.name %></li>
 <% end %>
 </ul>
+<%= button_to "Create Playlist", new_group_playlist_path(current_group), method: :get %>
 
 <h2>Members</h2>
 <p>Insert list of members here</p>
