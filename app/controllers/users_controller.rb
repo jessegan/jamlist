@@ -72,13 +72,13 @@ class UsersController < ApplicationController
     ## set_user
     # sets @user to the user id given in params
     def set_user
-        @user = User.find(params[:id])
+        @user_profile = User.find(params[:id])
     end
 
     ## viewing_current_user
     # checks to see if current user is viewing their own profile
     def viewing_current_user
-        @user == current_user
+        @user_profile == current_user
     end
 
 end

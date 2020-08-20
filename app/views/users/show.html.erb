@@ -1,9 +1,9 @@
 <!-- Profile Image -->
-<img src="<%= @user.image %>">
+<img src="<%= @user_profile.image %>">
 <!-- Display Name -->
-<h1><%= @user.display_name %></h1>
+<h1><%= @user_profile.display_name %></h1>
 <!-- Owned Groups -->
 <h3>Owned Groups</h3>
-<% @user.owned_groups_public_only.each do |g| %>
+<% @user_profile.owned_groups_public_only.each do |g| %>
     <li><%= link_to g.name,g %></li>
 <% end %>
