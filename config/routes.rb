@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   post '/logout', to: 'sessions#destroy'
 
+  ### USERS
+  resources :users, only: [:show,:edit,:update,:destroy]
+
   ### GROUPS
   get '/home', to: 'groups#home', as: 'home'
   resources :groups do
