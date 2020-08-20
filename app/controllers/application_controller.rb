@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     ## current_spotify_user
     # Return current rspotify user or create new rspotify user based on current user
     def current_spotify_user
-        @spotify_user ||= RSpotify::User.new(current_user.to_rspotify_hash)
+        @spotify_user ||= current_user.rspotify_user
     end
 
     ## logout
