@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+    helper_method :viewing_current_user
+
     ### CALLBACKS
 
     before_action :redirect_if_signed_in, only: [:spotify]
@@ -45,6 +47,25 @@ class UsersController < ApplicationController
     # show user route
     # shows a user's profile
     def show
+    end
+
+    ## edit
+    # edit user route
+    # shows a form for user to change their display_name
+    def edit
+    end
+
+    ## update
+    # update user route
+    # handles updating user's attributes
+    def update
+        if @user_profile && @user_profile.save 
+            # TODO: add flash message
+            redirect_to @user_profile
+        else
+            # TODO: add flash errors
+            render :edit
+        end
     end
 
     private
