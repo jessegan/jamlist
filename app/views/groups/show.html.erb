@@ -5,7 +5,11 @@
 <% end %>
 
 <h2>Playlists</h2>
-<p>Insert list of playlists here</p>
+<ul>
+<% current_group.playlists.each do |p| %>
+  <li><%= p.name %></li>
+<% end %>
+</ul>
 
 <h2>Members</h2>
 <p>Insert list of members here</p>
