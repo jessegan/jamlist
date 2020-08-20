@@ -1,0 +1,12 @@
+<h1>Create new playlist</h1>
+
+<%= form_for @playlist, url: group_playlists_path(current_group) do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div>
+        <%= f.submit "Create Playlist" %>
+    </div>
+<% end %>
