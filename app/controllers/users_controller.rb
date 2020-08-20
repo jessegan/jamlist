@@ -75,4 +75,10 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    ## viewing_current_user
+    # checks to see if current user is viewing their own profile
+    def viewing_current_user
+        @user == current_user
+    end
+
 end
