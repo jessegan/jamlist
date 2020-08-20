@@ -50,7 +50,13 @@ class User < ApplicationRecord
     end
     
     def to_rspotify_hash
-        {id: self.spotify_id, credentials: self.credential.to_rspotify_hash}
+        {"id" => self.spotify_id, "credentials" => self.credential.to_rspotify_hash}
+    end
+
+    ## rspotify_user
+    # creates and returns a RSpotify user
+    def rspotify_user
+        RSpotify::User.new(self.to_rspotify_hash)
     end
 
     ### PRIVATE METHODS

@@ -14,6 +14,6 @@ class SpotifyCredential < ApplicationRecord
     ### INSTANCE METHODS
 
     def to_rspotify_hash
-        {token:self.token, refresh_token: self.refresh_token, expires_at: self.expires_at, expires: self.expires}
+        {"token" => self.token, "refresh_token" => self.refresh_token, "expires_at" => self.expires_at, "expires" => self.expires}
     end
 end
