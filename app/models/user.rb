@@ -22,6 +22,7 @@ class User < ApplicationRecord
 
     ### SCOPES
 
+    scope :owned_groups_public_only, -> {self.owned_groups.public_only}
 
     ### INSTANCE METHODS
 
