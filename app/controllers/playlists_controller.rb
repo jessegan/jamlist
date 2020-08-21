@@ -7,9 +7,9 @@ class PlaylistsController < ApplicationController
     ### CALLBACKS
 
     before_action :require_member_of_group_if_private
-    before_action :require_member_of_group, only: [:new, :create]
-    before_action :require_admin_of_group, only: [:new, :create]
-    before_action :require_playlist_in_group, only: [:show]
+    before_action :require_member_of_group, only: [:new, :create, :destroy]
+    before_action :require_admin_of_group, only: [:new, :create, :destroy]
+    before_action :require_playlist_in_group, only: [:show, :destroy]
     
     ### ACTIONS
 
@@ -57,6 +57,15 @@ class PlaylistsController < ApplicationController
             # TODO: add flash error
             render :edit
         end
+    end
+
+    ## destroy
+    # destroy playlist route
+    # handles deleting a playlist from a group
+    def destroy
+        current_playlist.destroy
+
+        redirect_to current_group
     end
 
     ### METHODS
