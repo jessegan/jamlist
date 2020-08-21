@@ -77,6 +77,18 @@ class PlaylistsController < ApplicationController
         redirect_to [current_group,current_playlist]
     end
 
+    ## tracks
+    # tracks route
+    # renders a search page for tracks to add to playlist
+    def tracks
+    end
+
+    ## add_track
+    # add track route
+    # handles adding a track to a playlist
+    def add_track
+    end
+
     ### METHODS
     
     # Returns the current group of the page
