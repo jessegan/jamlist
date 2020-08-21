@@ -4,5 +4,9 @@ class PlaylistTrack < ApplicationRecord
 
   belongs_to :playlist
   belongs_to :track
-  
+
+  ### VALIDATIONS
+
+  validates :track, uniqueness: {scope: :playlist}
+
 end
