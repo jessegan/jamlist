@@ -23,4 +23,13 @@ class Playlist < ApplicationRecord
             false
         end
     end
+
+    # Returns an RSpotify::Playlist object of the playlist
+    # @return [RSpotify::Playlist] the resulting Playlsit object
+    def rspotify_playlist
+        if !self.spotify_id.nil?
+            @rspotify_playlist ||= RSpotify::Playlist.find_by_id(self.spotify_id)
+        end
+    end
+
 end
