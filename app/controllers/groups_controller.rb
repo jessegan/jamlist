@@ -88,6 +88,15 @@ class GroupsController < ApplicationController
         end
     end
 
+    ## leave
+    # Leave group route
+    # Removes the current user from a group
+    def leave
+        current_user.leave_group(current_group)
+
+        redirect_to home_path
+    end
+
     ### HELPERS
 
     # Returns the current group of the page

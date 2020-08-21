@@ -20,3 +20,7 @@
 <% if admin_of(current_group) %>
   <%= button_to "Edit", edit_group_path(current_group), method: :get %>
 <% end %>
+
+<% unless owner_of(current_group) %>
+  <%= button_to "Leave Group", leave_group_path, method: :post, data: {confirm: "Are you sure you want to leave the group?"} %>
+<% end %>

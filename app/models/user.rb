@@ -48,6 +48,14 @@ class User < ApplicationRecord
     def is_admin?(group)
         group.admins.include?(self)
     end
+
+    # Remove User from members of given group
+    # @param group [Group] the given group to leave
+    def leave_group(group)
+        if is_member?(group)
+            self.groups.destroy(group)
+        end
+    end
     
     def to_rspotify_hash
         {"id" => self.spotify_id, "credentials" => self.credential.to_rspotify_hash}
