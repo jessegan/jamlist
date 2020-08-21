@@ -1,0 +1,14 @@
+<h1>Search for Tracks</h1>
+<!-- Search bar -->
+<%= form_tag tracks_group_playlist_path(current_group,current_playlist), method: "get" %>
+    <%= label_tag :q, "Search: " %>
+    <%= text_field_tag :q, params[:q] %>
+    <%= submit_tag "Search" %>
+
+<!-- List of Tracks as result of search -->
+
+<ul>
+    <% @tracks.each do |track| %>
+        <li><%= track.name %></li>
+    <% end %>
+</ul>

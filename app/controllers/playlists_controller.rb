@@ -81,6 +81,13 @@ class PlaylistsController < ApplicationController
     # tracks route
     # renders a search page for tracks to add to playlist
     def tracks
+        if params[:q] && !params[:q].empty?
+            @tracks = RSpotify::Track.search(params[:q], limit: 50, market: 'US')
+        else
+            @tracks = []
+        end
+
+        render "tracks"
     end
 
     ## add_track
