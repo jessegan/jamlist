@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :groups do
     member do
       post 'join', to: 'groups#join'
+      post 'leave', to: 'groups#leave'
     end
 
     resources :playlists, path: "p", except: [:index]
