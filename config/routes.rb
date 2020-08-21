@@ -24,7 +24,13 @@ Rails.application.routes.draw do
       post 'leave', to: 'groups#leave'
     end
 
-    resources :playlists, path: "p", except: [:index]
+    resources :playlists, path: "p", except: [:index] do
+      member do
+        post 'follow', to: 'playlists#follow'
+        get 'tracks', to: 'playlists#tracks'
+        post 'tracks/:track_id', to: 'playlists#add_track'
+      end
+    end
     
   end
 
