@@ -41,10 +41,6 @@ class PlaylistsController < ApplicationController
 
     private 
 
-    def current_group
-        @group ||= Group.find(params[:group_id])
-    end
-
     def current_playlist
         @playlist ||= Playlist.find(params[:id])
     end

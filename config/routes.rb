@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   ### GROUPS
   get '/home', to: 'groups#home', as: 'home'
-  resources :groups do
+  resources :groups, params: "group_id" do
     member do
       post 'join', to: 'groups#join'
     end

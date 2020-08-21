@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
 
     ### HELPERS
 
-    helper_method :current_group, :member_of, :admin_of, :owner_of
+    
 
     ### CALLBACKS
 
@@ -90,41 +90,6 @@ class GroupsController < ApplicationController
 
     ### HELPERS
 
-    def current_group
-        @group ||= Group.find(params[:id])      
-    end
-
-    def member_of(group)
-        current_user.is_member?(group)
-    end
-
-    def owner_of(group)
-        current_user.is_owner?(group)
-    end
-
-    def admin_of(group)
-        current_user.is_admin?(group)
-    end
-
-    def require_member_of_group
-        if !member_of(current_group)
-            # TODO: Add flash alert
-            redirect_back fallback_location: home_path
-        end
-    end
-
-    def require_member_of_group_if_private
-        if !current_group.public
-            require_member_of_group
-        end
-    end
-
-    def require_admin_of_group
-        if !admin_of(current_group)
-            # TODO: add flash alert
-            redirect_back fallback_location: current_group
-        end
-    end
 
     private 
 
