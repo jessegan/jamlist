@@ -56,7 +56,14 @@ class User < ApplicationRecord
             self.groups.destroy(group)
         end
     end
-    
+
+    # Makes User's spotify account follow a given playlist
+    # @param playlist [Playlist] the give playlist to follow
+    def follow_playlist(playlist)
+        self.rspotify_user.follow(playlist.rpsotify_playlist)
+    end
+
+
     def to_rspotify_hash
         {"id" => self.spotify_id, "credentials" => self.credential.to_rspotify_hash}
     end
@@ -64,7 +71,7 @@ class User < ApplicationRecord
     ## rspotify_user
     # creates and returns a RSpotify user
     def rspotify_user
-        RSpotify::User.new(self.to_rspotify_hash)
+        @rspotify_user ||= RSpotify::User.new(self.to_rspotify_hash)
     end
 
     ### PRIVATE METHODS
