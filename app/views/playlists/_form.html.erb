@@ -1,0 +1,10 @@
+<%= form_for [current_group, playlist] do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div>
+        <%= f.submit btn_name %>
+    </div>
+<% end %>

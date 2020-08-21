@@ -41,6 +41,24 @@ class PlaylistsController < ApplicationController
         end
     end
 
+    ## edit
+    # edit playlist route
+    # render edit playlist form
+    def edit
+    end
+
+    ## update
+    # update playlist route
+    # handles the updating of the current playlist
+    def update
+        if current_playlist && current_playlist.update(playlist_params)
+            redirect_to [current_group,current_playlist]
+        else
+            # TODO: add flash error
+            render :edit
+        end
+    end
+
     ### METHODS
     
     # Returns the current group of the page
