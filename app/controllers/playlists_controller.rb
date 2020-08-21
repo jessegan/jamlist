@@ -7,9 +7,9 @@ class PlaylistsController < ApplicationController
     ### CALLBACKS
 
     before_action :require_member_of_group_if_private
-    before_action :require_member_of_group, only: [:new, :create, :destroy]
-    before_action :require_admin_of_group, only: [:new, :create, :destroy]
-    before_action :require_playlist_in_group, only: [:show, :destroy]
+    before_action :require_member_of_group, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_admin_of_group, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_playlist_in_group, only: [:show, :edit, :update, :destroy]
     
     ### ACTIONS
 
@@ -66,6 +66,15 @@ class PlaylistsController < ApplicationController
         current_playlist.destroy
 
         redirect_to current_group
+    end
+
+    ## follow
+    # follow playlist route
+    # handles current user following the current playlist
+    def follow
+        current_user.follow_playlist(current_playlist)
+
+        redirect_to [current_group,current_playlist]
     end
 
     ### METHODS
