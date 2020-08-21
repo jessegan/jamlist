@@ -1,1 +1,7 @@
 <h1><%= current_playlist.name %></h1>
+
+<h3>Songs</h3>
+
+<% if admin_of(current_group) %>
+    <%= button_to "Edit", edit_group_playlist_path(current_group,current_playlist), method: :get %>
+<% end %>
