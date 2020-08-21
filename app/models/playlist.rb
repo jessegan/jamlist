@@ -26,6 +26,9 @@ class Playlist < ApplicationRecord
         end
     end
 
+    
+
+
     # Returns an RSpotify::Playlist object of the playlist
     # @return [RSpotify::Playlist] the resulting Playlsit object
     def rspotify_playlist

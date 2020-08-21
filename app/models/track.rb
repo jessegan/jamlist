@@ -8,6 +8,7 @@ class Track < ApplicationRecord
     ### VALIDATIONS
 
     validates :name, presence: true
+    validates :spotify_id, uniqueness: true
 
     ### CALLBACKS
 
