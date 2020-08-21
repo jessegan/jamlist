@@ -45,32 +45,34 @@ class ApplicationController < ActionController::Base
 
     ### Groups methods
 
-    ## current_group
-    # returns the current group based on params
+    # Returns the current group based on params
+    # @return [Group] the current group
+    # @note This method is defined in subclasses
     def current_group
-        @group ||= Group.find(params[:group_id])      
     end
 
-    ## member_of
-    # checks if the current user is a member of a given group
+    # Checks if the current user is a member of a given group
+    # @param group [Group] the group to check members in
+    # @return [boolean] the result of member check
     def member_of(group)
         current_user.is_member?(group)
     end
 
-    ## owner_of
-    # checks if the current user is the owner of a group
+    # Checks if the current user is the owner of a group
+    # @param group [Group] the group to check owner of
+    # @return [boolean] the result of owner check
     def owner_of(group)
         current_user.is_owner?(group)
     end
 
-    ## admin_of
-    # checks if the curretn user is an admin of a group
+    # Checks if the current user is an admin of a group
+    # @param group [Group] the group to check admin of
+    # @return [boolean] the result of admin check
     def admin_of(group)
         current_user.is_admin?(group)
     end
 
-    ## require_member_of_group
-    # redirects back if current user is not a member of the current group
+    # Redirects back if current user is not a member of the current group
     def require_member_of_group
         if !member_of(current_group)
             # TODO: Add flash alert
@@ -78,16 +80,14 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    ## require_member_of_group_if_private
-    # redirects back if the current user is not a member of the current group if the group is private
+    # Redirects back if the current user is not a member of the current group if the group is private
     def require_member_of_group_if_private
         if !current_group.public
             require_member_of_group
         end
     end
 
-    ## require_admin_of_group
-    # redirects back if the current user is not an admin of the current group
+    # Redirects back if the current user is not an admin of the current group
     def require_admin_of_group
         if !admin_of(current_group)
             # TODO: add flash alert

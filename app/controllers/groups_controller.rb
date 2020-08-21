@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
 
     ### HELPERS
 
-    
+
 
     ### CALLBACKS
 
@@ -90,6 +90,11 @@ class GroupsController < ApplicationController
 
     ### HELPERS
 
+    # Returns the current group of the page
+    # @return [Group] the current group of the page
+    def current_group
+        @group ||= Group.find(params[:id])      
+    end
 
     private 
 

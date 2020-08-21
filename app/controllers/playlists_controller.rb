@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
 
     ### HELPERS
 
-    helper_method :current_group, :current_playlist
+    helper_method :current_playlist
 
     ### CALLBACKS
 
@@ -38,6 +38,13 @@ class PlaylistsController < ApplicationController
         end
     end
 
+    ### METHODS
+    
+    # Returns the current group of the page
+    # @return [Group] the current group of the page
+    def current_group
+        @group ||= Group.find(params[:group_id])      
+    end
 
     private 
 
