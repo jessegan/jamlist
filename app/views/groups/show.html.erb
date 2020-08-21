@@ -10,7 +10,9 @@
   <li><%= link_to p.name, group_playlist_path(current_group,p) %></li>
 <% end %>
 </ul>
-<%= button_to "Create Playlist", new_group_playlist_path(current_group), method: :get %>
+<% if admin_of(current_group) %>
+  <%= button_to "Create Playlist", new_group_playlist_path(current_group), method: :get %>
+<% end %>
 
 <h2>Members</h2>
 <p>Insert list of members here</p>

@@ -6,6 +6,9 @@ class PlaylistsController < ApplicationController
 
     ### CALLBACKS
 
+    before_action :require_member_of_group_if_private
+    before_action :require_member_of_group, only: [:new, :create]
+    before_action :require_admin_of_group, only: [:new, :create]
     before_action :require_playlist_in_group, only: [:show]
     
     ### ACTIONS
