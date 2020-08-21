@@ -26,8 +26,13 @@ class Playlist < ApplicationRecord
         end
     end
 
-    
+    # Adds track to playlist
+    # @params track [Track] track object to be added
+    def add_track(track)
+        self.group.owner.rspotify_user #gets owner credentials
 
+        self.rspotify_playlist.add_tracks!([track.rspotify_track])
+    end
 
     # Returns an RSpotify::Playlist object of the playlist
     # @return [RSpotify::Playlist] the resulting Playlsit object
