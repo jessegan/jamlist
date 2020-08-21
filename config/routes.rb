@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     resources :playlists, path: "p", except: [:index] do
       member do
         post 'follow', to: 'playlists#follow'
-        get 'tracks', to: 'playlists#tracks'
-        post 'tracks/:track_id', to: 'playlists#add_track'
+        get 'tracks', to: 'playlists#tracks', as: "tracks"
+        post 'tracks/:track_id', to: 'playlists#add_track', as: "add_track"
       end
     end
     
