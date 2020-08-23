@@ -6,7 +6,7 @@ class Track < ApplicationRecord
     has_many :playlists, through: :playlist_tracks
 
     has_many :track_artists, dependent: :destroy
-    has_many :artists, through: :track_arists
+    has_many :artists, through: :track_artists
     accepts_nested_attributes_for :artists
 
     ### VALIDATIONS
