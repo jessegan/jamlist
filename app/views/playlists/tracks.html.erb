@@ -1,14 +1,16 @@
 <h1>Search for Tracks</h1>
 <!-- Search bar -->
-<%= form_tag tracks_group_playlist_path(current_group,current_playlist), method: "get" %>
+<%= form_with(url: tracks_group_playlist_path(current_group,current_playlist), method: "get", local: true) do %>
     <%= label_tag :q, "Search: " %>
     <%= text_field_tag :q, params[:q] %>
     <%= submit_tag "Search" %>
+<% end %>
+
+<br>
 
 <!-- List of Tracks as result of search -->
 
-<ul>
-    <% @tracks.each do |track| %>
-        <li><%= track.name + " by " + display_rspotify_artist_names(track) %></li>
-    <% end %>
-</ul>
+<% @tracks.each do |track| %>
+    <li><%= track.name + " by " + display_rspotify_artist_names(track) %></li>
+    <%= button_to "Add Track", add_track_group_playlist_path(current_group,current_playlist,track.id), method: :post %>
+<% end %>
