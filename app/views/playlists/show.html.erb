@@ -1,6 +1,11 @@
 <h1><%= current_playlist.name %></h1>
 
-<h3>Songs</h3>
+<h3>Tracks</h3>
+<ul>
+<% @tracks.each do |t| %>
+    <li><%= t.name %></li>
+<% end %>
+</ul>
 
 <%= button_to "Add Songs", tracks_group_playlist_path(current_group,current_playlist), method: :get %>
 
