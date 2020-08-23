@@ -30,6 +30,8 @@ class Track < ApplicationRecord
                 artist.name = rspotify_artist.name
             end
         end
+
+        track
     end
 
     ### INSTANCE METHODS
