@@ -18,6 +18,20 @@ class Track < ApplicationRecord
 
     ### SCOPES
 
+    ### CLASS METHODS
+
+    # Creates and returns a new Track object from a RSpotify::Track
+    # @param rspotify_track [RSpotify::Track] RSpotify Track to create a new Track from
+    # @return [Track] initialized Track object
+    def self.create_from_rspotify(rspotify_track)
+        track = Track.create(name: rspotify_track.name, spotify_id: rspotify_track.id, duration: rspotify_track.duration_ms, track_number: rspotify_track.track_number)
+        rspotify_track.artists.each do |rspotify_artist|
+            track.artists << Artist.find_or_create_by(spotify_id: rspotify_artist.id) do |artist|
+                artist.name = rspotify_artist.name
+            end
+        end
+    end
+
     ### INSTANCE METHODS
 
     # Returns an RSpotify::Track object of the Track
