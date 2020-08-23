@@ -31,6 +31,8 @@ class Playlist < ApplicationRecord
     def add_track(track)
         self.group.owner.rspotify_user #gets owner credentials
 
+        self.tracks << track
+        
         self.rspotify_playlist.add_tracks!([track.rspotify_track])
     end
 
