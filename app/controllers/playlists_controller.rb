@@ -17,6 +17,7 @@ class PlaylistsController < ApplicationController
     # show playlist route
     # renders a playlist's page
     def show
+        @tracks = current_playlist.tracks
     end
 
     ##new
@@ -93,7 +94,19 @@ class PlaylistsController < ApplicationController
     ## add_track
     # add track route
     # handles adding a track to a playlist
-    def add_track
+    def add_track 
+        # Check if Track object exists
+        track = Track.find_by(spotify_id: params[:track_id])
+
+        if track.nil?
+            rspotify_track = RSpotify::Track.find(params[:track_id])
+
+            track = Track.create_from_rspotify(rspotify_track)
+        end
+
+        current_playlist.add_track(track)
+
+        redirect_to [current_group,current_playlist]
     end
 
     ### METHODS
