@@ -9,6 +9,6 @@
 
 <ul>
     <% @tracks.each do |track| %>
-        <li><%= track.name %></li>
+        <li><%= track.name + " by " + display_rspotify_artist_names(track) %></li>
     <% end %>
 </ul>
