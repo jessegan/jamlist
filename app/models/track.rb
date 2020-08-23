@@ -5,6 +5,9 @@ class Track < ApplicationRecord
     has_many :playlist_tracks, dependent: :destroy
     has_many :playlists, through: :playlist_tracks
 
+    has_many :track_artists, dependent: :destroy
+    has_many :artists, through: :track_arists
+
     ### VALIDATIONS
 
     validates :name, presence: true
