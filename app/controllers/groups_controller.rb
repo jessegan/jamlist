@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
 
     ### HELPERS
 
-
+    helper_method :current_group_members
 
     ### CALLBACKS
 
@@ -81,7 +81,12 @@ class GroupsController < ApplicationController
     # Members route
     # render page that shows the group's members
     def members
-        @members = current_group.members
+    end
+
+    ## edit_members
+    # Edit members route
+    # render form to remove group members
+    def edit_members
     end
 
     ## join
@@ -110,6 +115,12 @@ class GroupsController < ApplicationController
     # @return [Group] the current group of the page
     def current_group
         @group ||= Group.find(params[:id])      
+    end
+
+    # Returns list of current group's methods
+    # @return [Array<Member>] list of Members in the group
+    def current_group_members
+        @members ||= current_group.members
     end
 
     private 
