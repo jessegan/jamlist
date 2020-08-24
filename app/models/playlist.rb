@@ -67,6 +67,18 @@ class Playlist < ApplicationRecord
         tracks = self.tracks.map(&:rspotify_track)
 
         self.rspotify_playlist.replace_tracks!(tracks)
+
+        self
+    end
+
+    # Syncs playlist name with its spotify playlist
+    # @return [Playlist] the Playlist calling the method
+    def sync_details_to_spotify
+        owner = self.group.owner.rspotify_user
+        
+        self.rspotify_playlist.change_details!(name: self.name)
+
+        self
     end
 
 end
