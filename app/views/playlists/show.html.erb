@@ -1,5 +1,13 @@
 <h1><%= current_playlist.name %></h1>
 
+<%= button_to "Open in Spotify", "spotify:playlist:#{current_playlist.spotify_id}", method: :get, target: :_blank %>
+
+<br>
+
+<% if admin_of(current_group) %>
+  <%= button_to "Sync to Spotify", tracks_group_playlist_path(current_group,current_playlist), method: :post %>
+<% end %>
+
 <h3>Tracks</h3>
 <ul>
 <% @tracks.each do |t| %>
