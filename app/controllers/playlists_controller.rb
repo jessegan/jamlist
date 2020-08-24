@@ -129,6 +129,14 @@ class PlaylistsController < ApplicationController
         redirect_to [current_group,current_playlist]
     end
 
+    ## sync
+    # sync tracks route
+    # handles syncing of tracks to spotify playlist
+    def sync
+        # TODO: Add flash alert
+        current_playlist.sync_tracks_to_spotify
+    end
+
     ### METHODS
     
     # Returns the current group of the page
