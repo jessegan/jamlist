@@ -5,7 +5,7 @@
 <% end %>
 
 <ul>
-    <% @members.each do |member| %>
+    <% current_group_members.each do |member| %>
         <li><%= link_to member.user_name, member.user %></li>
     <% end %>
 </ul>
