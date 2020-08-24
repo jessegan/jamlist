@@ -15,7 +15,9 @@
 <% end %>
 </ul>
 
-<%= button_to "Add Songs", tracks_group_playlist_path(current_group,current_playlist), method: :get %>
+<% if member_of(current_group) %>
+  <%= button_to "Add Songs", tracks_group_playlist_path(current_group,current_playlist), method: :get %>  
+<% end %>
 
 <% if admin_of(current_group) %>
     <%= button_to "Remove Songs", edit_tracks_group_playlist_path(current_group,current_playlist), method: :get %>
