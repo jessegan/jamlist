@@ -27,8 +27,24 @@ class Group < ApplicationRecord
         self.users << user
     end
 
-    def admins
+    def admin_users
         self.users.merge(Member.admins)
+    end
+
+    def admins
+        self.members.where(admin:true)
+    end
+
+    def update_admins(admins)
+        self.members.each do |member|
+            if member.admin && !admins.include?(member)
+                member.update(admin: false)
+            elsif !member.admin && admins.include?(member)
+                member.update(admin: true)
+            end
+        end
+
+        self.admins
     end
 
     private

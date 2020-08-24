@@ -46,7 +46,7 @@ class User < ApplicationRecord
     end
 
     def is_admin?(group)
-        group.admins.include?(self)
+        group.admin_users.include?(self)
     end
 
     # Remove User from members of given group
