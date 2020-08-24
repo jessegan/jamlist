@@ -1,25 +1,28 @@
 <h1><%= current_group.name %></h1>
 
-<% if !member_of(current_group) %>
+
+<% if member_of(current_group) %>
+    <%= button_to "Members", members_group_path(current_group), method: :get %>
+<% else %>
     <%= button_to "Join Group", join_group_path(current_group), method: :post %>
 <% end %>
 
+<% if admin_of(current_group) %>
+  <%= button_to "Edit", edit_group_path(current_group), method: :get %>
+<% end %>
+
 <h2>Playlists</h2>
+
+<% if admin_of(current_group) %>
+  <%= button_to "Create Playlist", new_group_playlist_path(current_group), method: :get %>
+<% end %>
+
 <ul>
 <% current_group.playlists.each do |p| %>
   <li><%= link_to p.name, group_playlist_path(current_group,p) %></li>
 <% end %>
 </ul>
-<% if admin_of(current_group) %>
-  <%= button_to "Create Playlist", new_group_playlist_path(current_group), method: :get %>
-<% end %>
 
-<h2>Members</h2>
-<p>Insert list of members here</p>
-
-<% if admin_of(current_group) %>
-  <%= button_to "Edit", edit_group_path(current_group), method: :get %>
-<% end %>
 
 <% unless owner_of(current_group) %>
   <%= button_to "Leave Group", leave_group_path, method: :post, data: {confirm: "Are you sure you want to leave the group?"} %>
