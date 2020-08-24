@@ -5,8 +5,15 @@
     <div>
         <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name do |m| %>
             <%= m.label class: "check_box" do %>
-                <%= m.check_box class: "check_box" %>
-                <%= m.object.user_name %><br>
+                <%= m.object.user_name %>
+                <% if m.object.user == current_user %>
+                    (You)
+                <% elsif m.object.user == current_group.owner %>
+                    (Owner)
+                <% else %>
+                    <%= m.check_box class: "check_box" %>
+                <% end %>
+                <br>
             <% end %>
         <% end %>
     </div>
