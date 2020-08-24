@@ -53,6 +53,8 @@ class PlaylistsController < ApplicationController
     # handles the updating of the current playlist
     def update
         if current_playlist && current_playlist.update(playlist_params)
+            current_playlist.sync_details_to_spotify
+
             redirect_to [current_group,current_playlist]
         else
             # TODO: add flash error
