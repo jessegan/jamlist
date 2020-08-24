@@ -22,8 +22,18 @@ Rails.application.routes.draw do
     member do
       post 'join', to: 'groups#join'
       post 'leave', to: 'groups#leave'
+
+      # Managing members and admins
+      get 'members', to: 'groups#members'
+      get 'members/edit', to: 'groups#edit_members', as: 'edit_members'
+      post 'members', to: 'groups#update_members'
+
+      get 'admins', to: 'groups#edit_admins'
+      post 'admins', to: 'groups#update_admins'
+
     end
 
+    ## PLAYLISTS
     resources :playlists, path: "p", except: [:index] do
       member do
         post 'follow', to: 'playlists#follow'
