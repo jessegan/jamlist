@@ -96,11 +96,30 @@ class GroupsController < ApplicationController
     # Handle updating the members of the group
     def update_members
         if current_group && current_group.update(group_params)
-            
+
             redirect_to members_group_path(current_group)
         else
             render :edit_members
         end
+    end
+
+    ## edit_admins
+    # Edit admins route
+    # Render form to edit admins in the group
+    def edit_admins
+    end
+
+    ## update_admins
+    # update admins route
+    # Handle updating the admins of the group
+    def update_admins
+        if params[:group][:admins]
+            admins = Member.find(params[:group][:admins])
+
+            current_group.update_admins(admins)
+        end
+
+        redirect_to members_group_path(current_group)
     end
 
     ## join
@@ -140,7 +159,7 @@ class GroupsController < ApplicationController
     private 
 
     def group_params
-        params.require(:group).permit(:name,:description,:public,member_ids:[])
+        params.require(:group).permit(:name,:description,:public,member_ids:[],admins:[])
     end
 
 end
