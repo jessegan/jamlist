@@ -1,0 +1,31 @@
+<h1>Edit Admins</h1>
+
+<%= form_with model: current_group, url: admins_group_path(current_group), method: 'patch' do |f| %>
+
+    <div>
+        <%= f.collection_check_boxes :admins, current_group_members, :id, :user_name, include_hidden: false do |m| %>
+            <%= m.label class: "check_box" do %>
+                <%= m.object.user_name %>
+                <% if m.object.user == current_user %>
+                    (You)
+                    <%= m.check_box class: "check_box", hidden: true, checked: true %>
+                <% elsif m.object.user.is_owner?(current_group)  %>
+                    (Owner)
+                    <%= m.check_box class: "check_box", hidden: true, checked: true %>
+                <% elsif m.object.user.is_admin?(current_group) %>
+                    <%= m.check_box class: "check_box" , checked: true %>
+                <% else %>
+                    <%= m.check_box class: "check_box" %>
+                <% end %>
+                <br>
+            <% end %>
+        <% end %>
+    </div>
+
+    <br>
+
+    <div>
+        <%= f.submit "Update Admins" %>
+    </div>
+
+<% end %>

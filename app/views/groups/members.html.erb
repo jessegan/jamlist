@@ -2,6 +2,7 @@
 
 <% if admin_of(current_group) %>
     <%= button_to "Edit Members", edit_members_group_path(current_group), method: :get %>
+    <%= button_to "Edit Admins", admins_group_path(current_group), method: :get %>
 <% end %>
 
 <ul>
