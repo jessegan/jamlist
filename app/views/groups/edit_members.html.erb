@@ -3,7 +3,12 @@
 <%= form_with model: current_group, url: members_group_path(current_group), method: 'patch' do |f| %>
 
     <div>
-        <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name %>
+        <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name do |m| %>
+            <%= m.label class: "check_box" do %>
+                <%= m.check_box class: "check_box" %>
+                <%= m.object.user_name %><br>
+            <% end %>
+        <% end %>
     </div>
 
     <br>
