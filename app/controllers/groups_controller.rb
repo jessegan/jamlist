@@ -77,6 +77,13 @@ class GroupsController < ApplicationController
         redirect_to home_path
     end
 
+    ## members
+    # Members route
+    # render page that shows the group's members
+    def members
+        @members = current_group.members
+    end
+
     ## join
     # Join Group route
     # Add current to group and then redirect to group show page
