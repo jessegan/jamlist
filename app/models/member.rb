@@ -11,4 +11,10 @@ class Member < ApplicationRecord
 
     scope :admins, -> {where(admin:true)}
 
+    ### INSTANCE METHODS
+
+    def user_name
+        self.user.display_name
+    end
+
 end
