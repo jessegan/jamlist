@@ -13,27 +13,25 @@ class Playlist < ApplicationRecord
 
     ### INSTANCE METHODS
 
-    ## add_to_spotify
-    # adds playlist to Group owner's spotify account
-    # options include public or private and collaborative options
-    def add_to_spotify(options = {})
-        if self.spotify_id.nil?
-            playlist = self.group.owner.rspotify_user.create_playlist!(self.name)
-            self.spotify_id = playlist.id
-            self.save
-        else
-            false
-        end
-    end
-
     # Adds track to playlist
     # @params track [Track] track object to be added
     def add_track(track)
-        self.group.owner.rspotify_user #gets owner credentials
-
-        self.tracks << track
+        unless self.tracks.include?(track)
+            self.tracks << track
+        end
         
-        self.rspotify_playlist.add_tracks!([track.rspotify_track])
+        track
+    end
+
+    # Remove tracks from playlist
+    # @params tracks [Array<Track>] array of tracks to be removed
+    def remove_tracks(tracks)
+
+        tracks.each do |track|
+            self.tracks.destroy(track) # remove association
+        end
+
+        tracks
     end
 
     # Returns an RSpotify::Playlist object of the playlist
@@ -42,6 +40,33 @@ class Playlist < ApplicationRecord
         if !self.spotify_id.nil?
             @rspotify_playlist ||= RSpotify::Playlist.find_by_id(self.spotify_id)
         end
+    end
+
+    # Creates a playlist on Spotify under the owner's account
+    # @return [Playlist] the Playlist calling the method, or nil if playlist has already been created
+    def add_to_spotify
+        if self.spotify_id.nil?
+            playlist = self.group.owner.rspotify_user.create_playlist!(self.name)
+            self.spotify_id = playlist.id
+            self.save
+            self
+        else
+            nil
+        end
+    end
+
+    # Syncs all tracks with its Spotify playlist
+    # @return [Playlist] the Playlist calling the method
+    def sync_tracks_to_spotify
+        if self.spotify_id.nil?
+            self.add_to_spotify
+        end
+
+        owner = self.group.owner.rspotify_user
+
+        tracks = self.tracks.map(&:rspotify_track)
+
+        self.rspotify_playlist.replace_tracks!(tracks)
     end
 
 end
