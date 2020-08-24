@@ -19,8 +19,10 @@ class UsersController < ApplicationController
 
             redirect_to home_path
         else  
-         # If no, render create account form with params
-            @user = User.new(email: auth_params_info['email'], spotify_id: auth_params_info['id'], image: auth_params_info['images'][0]['url'], display_name:  auth_params_info['display_name'])
+            binding.pry
+            @user = User.new(email: auth_params_info['email'], spotify_id: auth_params_info['id'], display_name:  auth_params_info['display_name'])
+            @user.image = auth_params_info['images'][0]['url'] if !auth_params_info['images'].empty?
+
             @user.build_credential(token: auth_params_credentials[:token], refresh_token: auth_params_credentials[:refresh_token], expires_at: auth_params_credentials[:expires_at], expires: auth_params_credentials[:expires])
 
             render 'new'
