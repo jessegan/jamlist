@@ -1,0 +1,17 @@
+<h1>Remove Songs</h1>
+
+<%= form_with url: tracks_group_playlist_path(current_group,current_playlist) , method: "patch", local:true do %>
+    <% current_playlist.tracks.each do |t| %>
+        <div>
+            <%= check_box_tag 'tracks[]', t.id %>
+            <%= t.name %>
+        </div>
+    <% end %>
+
+    <br>
+
+    <div>
+        <%= submit_tag "Remove Songs" %>
+    </div>
+
+<% end %>
