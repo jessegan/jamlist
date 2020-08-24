@@ -29,6 +29,8 @@ Rails.application.routes.draw do
         post 'follow', to: 'playlists#follow'
         get 'tracks', to: 'playlists#tracks', as: "tracks"
         post 'tracks/:track_id', to: 'playlists#add_track', as: "add_track"
+        get 'tracks/edit', to: 'playlists#edit_tracks', as: "edit_tracks"
+        patch 'tracks', to: 'playlists#remove_tracks', as: "remove_tracks"
       end
     end
     
