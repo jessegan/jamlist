@@ -120,6 +120,13 @@ class PlaylistsController < ApplicationController
     # remove tracks route
     # handles removing an multiple tracks from playlist
     def remove_tracks
+        unless params[:tracks].nil?
+            tracks = Track.find(params[:tracks])
+
+            current_playlist.remove_tracks(tracks)
+        end
+
+        redirect_to [current_group,current_playlist]
     end
 
     ### METHODS
