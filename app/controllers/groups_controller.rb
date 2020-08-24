@@ -8,7 +8,8 @@ class GroupsController < ApplicationController
 
     before_action :require_signed_in
     before_action :require_member_of_group_if_private, only: [:show]
-    before_action :require_admin_of_group, only: [:edit]
+    before_action :require_member_of_group, only: [:members]
+    before_action :require_admin_of_group, only: [:edit,:edit_members]
 
     ### ACTIONS
 
@@ -61,6 +62,7 @@ class GroupsController < ApplicationController
     # update group route
     # Handle updating group info
     def update
+        binding.pry
         if current_group.update(group_params)
             redirect_to current_group
         else
@@ -87,6 +89,18 @@ class GroupsController < ApplicationController
     # Edit members route
     # render form to remove group members
     def edit_members
+    end
+
+    ## update_members
+    # Update members route
+    # Handle updating the members of the group
+    def update_members
+        if current_group && current_group.update(group_params)
+            
+            redirect_to members_group_path(current_group)
+        else
+            render :edit_members
+        end
     end
 
     ## join
@@ -126,7 +140,7 @@ class GroupsController < ApplicationController
     private 
 
     def group_params
-        params.require(:group).permit(:name,:description,:public)
+        params.require(:group).permit(:name,:description,:public,member_ids:[])
     end
 
 end
