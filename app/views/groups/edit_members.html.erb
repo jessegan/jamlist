@@ -1,0 +1,15 @@
+<h1>Edit Members</h1>
+
+<%= form_with model: current_group, url: members_group_path(current_group), method: 'patch' do |f| %>
+
+    <div>
+        <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name %>
+    </div>
+
+    <br>
+
+    <div>
+        <%= f.submit "Update Members" %>
+    </div>
+
+<% end %>
