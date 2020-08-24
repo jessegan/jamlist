@@ -7,9 +7,9 @@ class PlaylistsController < ApplicationController
     ### CALLBACKS
 
     before_action :require_member_of_group_if_private
-    before_action :require_member_of_group, only: [:new, :create, :edit, :update, :destroy]
-    before_action :require_admin_of_group, only: [:new, :create, :edit, :update, :destroy]
-    before_action :require_playlist_in_group, only: [:show, :edit, :update, :destroy]
+    before_action :require_member_of_group, only: [:new, :create, :edit, :update, :destroy, :tracks,:add_track,:edit_tracks,:remove_tracks]
+    before_action :require_admin_of_group, only: [:new, :create, :edit, :update, :destroy,:edit_tracks,:remove_tracks]
+    before_action :require_playlist_in_group, except: [:new,:create]
     
     ### ACTIONS
 
@@ -107,6 +107,19 @@ class PlaylistsController < ApplicationController
         current_playlist.add_track(track)
 
         redirect_to [current_group,current_playlist]
+    end
+
+    ## edit_tracks
+    # edit tracks route
+    # renders page for admins to remove songs
+    def edit_tracks
+        render "edit_tracks"
+    end
+
+    ## remove_tracks
+    # remove tracks route
+    # handles removing an multiple tracks from playlist
+    def remove_tracks
     end
 
     ### METHODS
