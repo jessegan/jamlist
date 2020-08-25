@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       patch 'members', to: 'groups#update_members'
 
       get 'admins', to: 'groups#edit_admins'
-      post 'admins', to: 'groups#update_admins'
+      patch 'admins', to: 'groups#update_admins'
 
     end
 
