@@ -31,10 +31,12 @@
             <div class="row">
                 <% @user_profile.owned_groups_public_only.each do |g| %>
                     <div class="card col s5" style="margin: 10px;">
-                        <div class="card-content">
-                            <span class="card-title"><%= g.name %></span>
-                            <p><%= pluralize(g.members.count, "Member") %><p>
-                        </div>
+                        <a href="<%= group_path(g) %>">
+                            <div class="card-content black-text">
+                                <span class="card-title"><%= g.name %></span>
+                                <p><%= pluralize(g.members_count, "Member") %><p>
+                            </div>
+                        </a>
                     </div>
                 <% end %>
             </div>
