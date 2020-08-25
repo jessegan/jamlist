@@ -1,0 +1,8 @@
+<div class="card col s5" style="margin: 10px;">
+    <a href="<%= group_path(g) %>">
+        <div class="card-content black-text">
+            <span class="card-title"><%= g.name %></span>
+            <p><%= pluralize(g.members_count, "Member") %><p>
+        </div>
+    </a>
+</div>

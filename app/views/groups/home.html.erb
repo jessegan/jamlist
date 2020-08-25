@@ -12,14 +12,7 @@
         <div class="col s12">
             <div class="row">
                 <% current_user.owned_groups.each do |g| %>
-                    <div class="card col s5" style="margin: 10px;">
-                        <a href="<%= group_path(g) %>">
-                            <div class="card-content black-text">
-                                <span class="card-title"><%= g.name %></span>
-                                <p><%= pluralize(g.members_count, "Member") %><p>
-                            </div>
-                        </a>
-                    </div>
+                    <%= render partial: "group_card", locals: {g: g} %>
                 <% end %>
             </div>
 
@@ -35,14 +28,7 @@
         <div class="col s12">
             <div class="row">
                 <% current_user.groups_joined_not_owned.each do |g| %>
-                    <div class="card col s5" style="margin: 10px;">
-                        <a href="<%= group_path(g) %>">
-                            <div class="card-content black-text">
-                                <span class="card-title"><%= g.name %></span>
-                                <p><%= pluralize(g.members_count, "Member") %><p>
-                            </div>
-                        </a>
-                    </div>
+                    <%= render partial: "group_card", locals: {g: g} %>
                 <% end %>
             </div>
         </div>
