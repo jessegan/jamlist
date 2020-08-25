@@ -62,7 +62,6 @@ class GroupsController < ApplicationController
     # update group route
     # Handle updating group info
     def update
-        binding.pry
         if current_group.update(group_params)
             redirect_to current_group
         else
