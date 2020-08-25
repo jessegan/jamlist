@@ -9,11 +9,11 @@
     </div>
 
     <div class="row">
-        <%= form_with model: current_group, url: members_group_path(current_group), method: 'patch', include_hidden: false, class: "col s12" do |f| %>
+        <%= form_with model: current_group, url: members_group_path(current_group), method: 'patch', class: "col s12" do |f| %>
 
             <!-- Check box builder -->
             <div class="row">
-                <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name do |m| %>
+                <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name, include_hidden: false do |m| %>
                     <%= m.label class: "check_box" do %>
 
                         <!-- Member Card -->
@@ -43,7 +43,7 @@
             <div class="row">
                 <%= f.submit "Update Members", class: "btn" %>
             </div>
-            
+
         <% end %>
 
     </div>
