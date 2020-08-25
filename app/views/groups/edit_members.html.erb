@@ -1,27 +1,51 @@
-<h1>Edit Members</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= form_with model: current_group, url: members_group_path(current_group), method: 'patch' do |f| %>
+<!-- Main Content -->
+<div class="container">
 
-    <div>
-        <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name do |m| %>
-            <%= m.label class: "check_box" do %>
-                <%= m.object.user_name %>
-                <% if m.object.user == current_user %>
-                    (You)
-                <% elsif m.object.user == current_group.owner %>
-                    (Owner)
-                <% else %>
-                    <%= m.check_box class: "check_box" %>
+    <div class="row">
+        <h3 class="col s12">Edit Members</h3>
+    </div>
+
+    <div class="row">
+        <%= form_with model: current_group, url: members_group_path(current_group), method: 'patch', include_hidden: false, class: "col s12" do |f| %>
+
+            <!-- Check box builder -->
+            <div class="row">
+                <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name do |m| %>
+                    <%= m.label class: "check_box" do %>
+
+                        <!-- Member Card -->
+                        <div class="card col s3" style="margin: 10px;">
+                            <div class="card-content black-text">
+                                <span class="card-title"><%= m.object.user_name %></span>
+
+                                <!-- Checkbox options depending on member -->
+                                <% if m.object.user == current_user %>
+                                    <%= m.check_box class: "check_box filled-in", disabled: true %>
+                                    <%= content_tag :span, "Can't Remove Yourself" %>
+                                <% elsif m.object.user == current_group.owner %>
+                                    <%= m.check_box class: "check_box filled-in", disabled: true %>
+                                    <%= content_tag :span, "Can't Remove Owner" %>
+                                <% else %>
+                                    <%= m.check_box class: "check_box filled-in" %>
+                                    <%= content_tag :span, "Uncheck to remove" %>
+                                <% end %>
+
+                            </div>
+                        </div>
+
+                    <% end %>
                 <% end %>
-                <br>
-            <% end %>
+            </div>
+
+            <div class="row">
+                <%= f.submit "Update Members", class: "btn" %>
+            </div>
+            
         <% end %>
+
     </div>
 
-    <br>
-
-    <div>
-        <%= f.submit "Update Members" %>
-    </div>
-
-<% end %>
+</div>
