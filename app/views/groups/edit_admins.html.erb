@@ -1,31 +1,51 @@
-<h1>Edit Admins</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= form_with model: current_group, url: admins_group_path(current_group), method: 'patch' do |f| %>
+<!-- Main Content -->
+<div class="container">
 
-    <div>
-        <%= f.collection_check_boxes :admins, current_group_members, :id, :user_name, include_hidden: false do |m| %>
-            <%= m.label class: "check_box" do %>
-                <%= m.object.user_name %>
-                <% if m.object.user == current_user %>
-                    (You)
-                    <%= m.check_box class: "check_box", hidden: true, checked: true %>
-                <% elsif m.object.user.is_owner?(current_group)  %>
-                    (Owner)
-                    <%= m.check_box class: "check_box", hidden: true, checked: true %>
-                <% elsif m.object.user.is_admin?(current_group) %>
-                    <%= m.check_box class: "check_box" , checked: true %>
-                <% else %>
-                    <%= m.check_box class: "check_box" %>
+    <div class="row">
+        <h3 class="col s12">Edit Admins</h3>
+    </div>
+
+    <div class="row">
+        <%= form_with model: current_group, url: admins_group_path(current_group), method: 'patch', class: "col s12" do |f| %>
+
+            <!-- Check box builder -->
+            <div class="row">
+                <%= f.collection_check_boxes :admins, current_group_members, :id, :user_name, include_hidden: false do |m| %>
+                    <%= m.label do %>
+
+                        <!-- Member Card -->
+                        <div class="card col s3" style="margin: 10px;">
+                            <div class="card-content black-text">
+                                <span class="card-title"><%= m.object.user_name %></span>
+
+                                <!-- Checkbox options depending on member -->
+                                <% if m.object.user == current_user || m.object.owner_of_group %>
+                                    <%= m.check_box class: "filled-in hide", checked: true, onclick: "return false;" %>
+                                    <%= content_tag :span, "Cannot Remove" %>
+                                <% elsif m.object.admin %>
+                                    <%= m.check_box class: "filled-in", checked: true %>
+                                    <%= content_tag :span, "Select to make admin" %>
+                                <% else %>
+                                    <%= m.check_box class: "filled-in", checked: false  %>
+                                    <%= content_tag :span, "Select to make admin" %>
+                                <% end %>
+
+                            </div>
+                        </div>
+
+                    <% end %>
                 <% end %>
-                <br>
-            <% end %>
+            </div>
+
+            <div class="row">
+                <%= f.submit "Update Admins", class: "btn" %>
+            </div>
+            
         <% end %>
+
     </div>
 
-    <br>
-
-    <div>
-        <%= f.submit "Update Admins" %>
-    </div>
-
-<% end %>
+</div>
