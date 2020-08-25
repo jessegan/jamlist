@@ -20,17 +20,19 @@
   </head>
 
   <body>
-    <nav>
-      <div class="nav-wrapper white">
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper white">
 
-        <%= link_to content_tag(:div, image_tag("jamlist_logo.png", size: "50"), class: "valign-wrapper", style: "height: 100%;"), root_path, class: "brand-logo center", style: "height: 100%;" %>
+          <%= link_to content_tag(:div, image_tag("jamlist_logo.png", size: "50"), class: "valign-wrapper", style: "height: 100%;"), root_path, class: "brand-logo center", style: "height: 100%;" %>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <%= generate_nav_bar %>
-        </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <%= generate_nav_bar %>
+          </ul>
 
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </div>
 
     <!-- MAIN CONTENT -->
       <%= yield %>
