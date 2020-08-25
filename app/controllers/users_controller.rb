@@ -19,8 +19,7 @@ class UsersController < ApplicationController
 
             redirect_to home_path
         else  
-            binding.pry
-            @user = User.new(email: auth_params_info['email'], spotify_id: auth_params_info['id'], display_name:  auth_params_info['display_name'])
+            @user = User.new(email: auth_params_info['email'], spotify_id: auth_params_info['id'], display_name:  auth_params_info['display_name'], image: "user.png")
             @user.image = auth_params_info['images'][0]['url'] if !auth_params_info['images'].empty?
 
             @user.build_credential(token: auth_params_credentials[:token], refresh_token: auth_params_credentials[:refresh_token], expires_at: auth_params_credentials[:expires_at], expires: auth_params_credentials[:expires])
@@ -41,7 +40,9 @@ class UsersController < ApplicationController
 
             redirect_to home_path
         else
-            render 'new'
+            flash.alert = "Error creating account. Try again."
+        
+            redirect_to root_path
         end
     end
 
