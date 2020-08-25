@@ -1,9 +1,22 @@
-<h1>Edit Group</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= render partial: 'form', locals: {btn_name: "Save"} %>
+<!-- Main Content -->
 
-<br>
+<div class="container">
 
-<% if owner_of(current_group) %>
-    <%= button_to "DELETE GROUP", current_group, method: :delete, data: {confirm: "Are you sure you want to delete #{current_group.name}?"} %>
-<% end %>
+    <div class="row">
+        <h3 class="col s12">Edit Group</h3>
+    </div>
+
+    <div class="row">
+        <%= render partial: 'form', locals: {btn_name: "Save"} %>
+    </div>
+
+    <% if owner_of(current_group) %>
+        <div class="divider"></div>
+        <br>
+        <%= link_to "Delete Group", current_group, method: :delete, class: "btn red", data: {confirm: "Are you sure you want to delete #{current_group.name}?"} %>
+    <% end %>
+
+</div>
