@@ -1,12 +1,24 @@
-<h1>Members</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<% if admin_of(current_group) %>
-    <%= button_to "Edit Members", edit_members_group_path(current_group), method: :get %>
-    <%= button_to "Edit Admins", admins_group_path(current_group), method: :get %>
-<% end %>
+<!-- Main Content -->
+<div class="container">
 
-<ul>
-    <% current_group_members.each do |member| %>
-        <li><%= link_to member.user_name, member.user %></li>
-    <% end %>
-</ul>
+    <div class="row">
+        <h3 class="col s12">Members
+            <% if admin_of(current_group) %>
+                <%= link_to "Edit Members", edit_members_group_path(current_group), class: "btn-small" %>
+                <%= link_to "Edit Admins", admins_group_path(current_group), class: "btn-small" %>
+            <% end %>
+        </h3>
+    </div>
+
+    <div class="row">
+
+        <% current_group_members.each do |m| %>
+            <%= render partial: "member_card", locals: {m: m} %>
+        <% end %>
+
+    </div>
+
+</div>
