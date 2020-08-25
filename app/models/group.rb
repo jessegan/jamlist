@@ -23,6 +23,12 @@ class Group < ApplicationRecord
 
     ### INSTANCE METHODS
 
+    # Returns the number of members in the group
+    # @return [Integer] the count of members in the group
+    def members_count
+        self.members.count
+    end
+
     def add_member(user)
         self.users << user
     end
