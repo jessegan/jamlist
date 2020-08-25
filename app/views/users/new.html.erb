@@ -1,28 +1,69 @@
-<img src='<%= @user.image %>'>
-<p>Logging in as: <%= @user.display_name %></p>
-<p>Email: <%= @user.email %></p>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<br>
+<!-- Main Content -->
+<div class="container">
 
-<%= form_for @user, url: '/signup', method: 'POST' do |f| %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :display_name %>
-    <%= f.hidden_field :image %>
-    <%= f.hidden_field :spotify_id %>
+    <div class="row">
+        <h1 class="col s12">Create Your Account</h1>
+    </div>
 
-    <%= f.fields_for :credential do |c| %>
-        <%= c.hidden_field :token %>
-        <%= c.hidden_field :refresh_token %>
-        <%= c.hidden_field :expires_at %>
-        <%= c.hidden_field :expires %>
-    <% end %>
+    <div class="row">
 
-    <%= f.label :password, "Create a password for your account" %>
-    <%= f.text_field :password %>
-    <br>
-    <%= f.label :password_confirmation, "Confirm password" %>
-    <%= f.text_field :password_confirmation %>
+        <%= image_tag @user.image, width: "20", class: "circle col s3" %>
 
-    <br>
-    <%= f.submit "Create Account" %>
-<% end %>
+
+        <div class="col s9">
+            <div class="row">
+                <div class="col s12" style="font-size:large;">
+                    <strong>Logging in as: </strong><%= @user.display_name %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12" style="font-size:large;">
+                    <strong>Email: </strong><%= @user.email %>    
+                </div>      
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <%= form_for @user, url: '/signup', method: 'POST', class: "col s12" do |f| %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :display_name %>
+            <%= f.hidden_field :image %>
+            <%= f.hidden_field :spotify_id %>
+
+            <%= f.fields_for :credential do |c| %>
+                <%= c.hidden_field :token %>
+                <%= c.hidden_field :refresh_token %>
+                <%= c.hidden_field :expires_at %>
+                <%= c.hidden_field :expires %>
+            <% end %>
+
+            <div class="row">
+
+                <div class="input-field col s6">
+                    <%= f.label :password, "Password" %>
+                    <%= f.password_field :password, class: "validate", required: true %>
+                    <span class="helper-text" data-error="Required" data-success=""></span>
+                </div>
+
+                <div class="input-field col s6">
+                    <%= f.label :password_confirmation, "Confirm password" %>
+                    <%= f.password_field :password_confirmation, class: "validate", required: true %>
+                    <span class="helper-text" data-error="Required" data-success=""></span>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <%= f.submit "Create Account", class: "btn waves-effect waves-light white-text" %>
+                </div>
+            </div>
+
+        <% end %>
+    </div>
+</div>
