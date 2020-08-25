@@ -1,3 +1,15 @@
-<h1>New Group</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= render partial: 'form', locals: {btn_name: "Create Group"} %>
+<!-- Main Content -->
+<div class="container">
+
+    <div class="row">
+        <h2 class="col s12">New Group</h2>
+    </div>
+
+    <div class="row">
+        <%= render partial: 'form', locals: {btn_name: "Create Group"} %>
+    </div>
+    
+</div>

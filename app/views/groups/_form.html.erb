@@ -1,22 +1,25 @@
-<%= form_for @group do |f| %>
-    <div>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+<%= form_for @group, class: "col s12" do |f| %>
+    <div class="row">
+        <div class="input-field col s12">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "validate", required: true %>
+        </div>
     </div>
 
-    <div>
-        <%= f.label :description %>
-        <br>
-        <%= f.text_area :description, placeholder: "(optional)" %>
+
+    <div class="row">
+        <div class="switch col s12">
+            <label>
+                Private
+                <%= f.check_box :public %>
+                <span class="lever"></span>
+                Public
+            </label>
+        </div>
     </div>
 
-    <div>
-        <%= f.label :public %>
-        <%= f.check_box :public %>
-    </div>
-
-    <div>
-        <%= f.submit btn_name %>
+    <div class="row">
+        <%= f.submit btn_name, class: "btn col s2" %>
     </div>
 
 <% end %>
