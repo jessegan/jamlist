@@ -5,16 +5,36 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
+    <!-- Materializecss -->
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav>
-      <ul>
-        <%= generate_nav_bar %>
-      </ul>
+      <div class="nav-wrapper white">
+
+        <%= link_to content_tag(:div, image_tag("jamlist_logo.png", size: "50"), class: "valign-wrapper", style: "height: 100%;"), root_path, class: "brand-logo center", style: "height: 100%;" %>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <%= generate_nav_bar %>
+        </ul>
+
+      </div>
     </nav>
-    <%= yield %>
+
+    <!-- MAIN CONTENT -->
+      <%= yield %>
+
+
   </body>
 </html>
