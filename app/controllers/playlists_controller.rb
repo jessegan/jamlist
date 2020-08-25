@@ -6,6 +6,7 @@ class PlaylistsController < ApplicationController
 
     ### CALLBACKS
 
+    before_action :require_signed_in
     before_action :require_member_of_group_if_private
     before_action :require_member_of_group, only: [:follow]
     before_action :require_admin_of_group, only: [:new, :create, :edit, :update, :destroy, :tracks,:add_track,:edit_tracks,:remove_tracks,:sync]
