@@ -1,6 +1,17 @@
 <!-- HOME PAGE -->
-<h1>Welcome to Jamlist</h1>
 
-<%= button_to "Connect to Spotify", "/auth/spotify", method: :get %>
-<br>
-<%= link_to "Login Manually", "/login" %>
+<%= image_tag "home_page.jpg", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
+
+
+<div class="container center-align">
+    <h1 class="center-align">Welcome to Jamlist</h1>
+
+    <h5 class="center-align">Join Groups. Create Playlists. Jam out.</h5>
+
+    <br>
+
+    <%= link_to content_tag(:div, image_tag("spotify.png", size: "30") + "Connect to Spotify", class: "valign-wrapper"), "/auth/spotify", class: "btn-large black white-text" %>
+
+    <br><br>
+    <%= link_to "or login manually", "/login" %>
+</div>
