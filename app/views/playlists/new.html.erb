@@ -1,3 +1,15 @@
-<h1>Create new playlist</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= render partial: "form", locals: {playlist: @playlist, btn_name: "Create Playlist"} %>
+<!-- Main Content -->
+
+<div class="container">
+
+    <div class="row">
+        <h3 class="col s12">Create new playlist</h3>
+    </div>
+
+    <div class="row">
+        <%= render partial: "form", locals: {playlist: @playlist, btn_name: "Create Playlist"} %>
+    </div>
+</div>

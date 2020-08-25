@@ -1,10 +1,16 @@
-<%= form_for [current_group, playlist] do |f| %>
-    <div>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+<%= form_for [current_group, playlist], class: "col s12" do |f| %>
+
+    <div class="row">
+        <div class="input-field col s4">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "validate", required: true %>
+        </div>
     </div>
 
-    <div>
-        <%= f.submit btn_name %>
+    <div class="row">
+        <div class="col s2">
+            <%= f.submit btn_name, class: "btn" %>
+        </div>
     </div>
+
 <% end %>
