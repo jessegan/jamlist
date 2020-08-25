@@ -38,7 +38,8 @@ class PlaylistsController < ApplicationController
 
             redirect_to group_playlist_path(current_group,@playlist)
         else  
-            # TODO: add flash error
+            flash.alert = "Playlist already exists with that name."
+            
             render :new
         end
     end
