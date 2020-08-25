@@ -1,0 +1,14 @@
+<div class="card col s3" style="margin: 10px;">
+    <a href="<%= user_path(m.user) %>">
+        <div class="card-content black-text">
+            <span class="card-title"><%= m.user_name %></span>
+            <% if m.owner_of_group %>
+                <p>Owner</p>
+            <% elsif m.admin %>
+                <p>Admin</p>
+            <% else %>
+                <p>Member</p>
+            <% end %>
+        </div>
+    </a>
+</div>
