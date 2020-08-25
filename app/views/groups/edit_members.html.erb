@@ -14,7 +14,7 @@
             <!-- Check box builder -->
             <div class="row">
                 <%= f.collection_check_boxes :member_ids, current_group_members, :id, :user_name, include_hidden: false do |m| %>
-                    <%= m.label class: "check_box" do %>
+                    <%= m.label do %>
 
                         <!-- Member Card -->
                         <div class="card col s3" style="margin: 10px;">
@@ -22,14 +22,11 @@
                                 <span class="card-title"><%= m.object.user_name %></span>
 
                                 <!-- Checkbox options depending on member -->
-                                <% if m.object.user == current_user %>
-                                    <%= m.check_box class: "check_box filled-in", disabled: true %>
-                                    <%= content_tag :span, "Can't Remove Yourself" %>
-                                <% elsif m.object.user == current_group.owner %>
-                                    <%= m.check_box class: "check_box filled-in", disabled: true %>
-                                    <%= content_tag :span, "Can't Remove Owner" %>
+                                <% if m.object.user == current_user || m.object.owner_of_group %>
+                                    <%= m.check_box class: "filled-in", checked: true, onclick: "return false;" %>
+                                    <%= content_tag :span, "Cannot Remove" %>
                                 <% else %>
-                                    <%= m.check_box class: "check_box filled-in" %>
+                                    <%= m.check_box class: "filled-in", checked: true %>
                                     <%= content_tag :span, "Uncheck to remove" %>
                                 <% end %>
 
