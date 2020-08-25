@@ -33,6 +33,12 @@ class Playlist < ApplicationRecord
 
         tracks
     end
+    
+    # Return the number of tracks 
+    # @return [Integer] the number of Tracks
+    def track_count
+        self.tracks.count
+    end
 
     # Returns an RSpotify::Playlist object of the playlist
     # @return [RSpotify::Playlist] the resulting Playlsit object
