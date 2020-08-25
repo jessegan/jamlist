@@ -1,0 +1,8 @@
+<div class="card col s5" style="margin: 10px;">
+    <a href="<%= group_playlist_path(current_group,p) %>">
+        <div class="card-content black-text">
+            <span class="card-title"><%= p.name %></span>
+            <p><%= pluralize(p.track_count, "Tracks") %><p>
+        </div>
+    </a>
+</div>

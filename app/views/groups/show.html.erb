@@ -1,29 +1,62 @@
-<h1><%= current_group.name %></h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
+<!-- Main Content -->
 
-<% if member_of(current_group) %>
-    <%= button_to "Members", members_group_path(current_group), method: :get %>
-<% else %>
-    <%= button_to "Join Group", join_group_path(current_group), method: :post %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h1 class="col s12"><%= current_group.name %></h1>
+  </div>
+  
+  <div class="row">
+    <div class="col s12">
 
-<% if admin_of(current_group) %>
-  <%= button_to "Edit", edit_group_path(current_group), method: :get %>
-<% end %>
+      <% if member_of(current_group) %>
+          <%= link_to "Members", members_group_path(current_group), class: "btn-small" %>
+      <% else %>
+          <%= link_to "Join Group", join_group_path(current_group), method: :post, class: "btn-small" %>
+      <% end %>
 
-<h2>Playlists</h2>
+      <% if admin_of(current_group) %>
+        <%= link_to "Edit", edit_group_path(current_group), class: "btn-small" %>
+      <% end %>
 
-<% if admin_of(current_group) %>
-  <%= button_to "Create Playlist", new_group_playlist_path(current_group), method: :get %>
-<% end %>
+    </div>
+  </div>
 
-<ul>
-<% current_group.playlists.each do |p| %>
-  <li><%= link_to p.name, group_playlist_path(current_group,p) %></li>
-<% end %>
-</ul>
+  <div class="divider"></div>
 
+  <div class="row">
 
-<% unless owner_of(current_group) %>
-  <%= button_to "Leave Group", leave_group_path, method: :post, data: {confirm: "Are you sure you want to leave the group?"} %>
-<% end %>
+    <div class="col s12">
+      
+      <div class="row">
+        <h3 class="col s12">Playlists
+
+          <% if admin_of(current_group) %>
+            <%= link_to "Create Playlist", new_group_playlist_path(current_group), class: "btn-small" %>
+          <% end %>
+
+        </h3>
+      </div>
+
+      <div class="row">
+        <% current_group.playlists.each do |p| %>
+          <%= render partial: "playlists/playlist_card", locals: {p: p} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <br>
+
+  <div class="row">
+    <div class="col s2">
+      <% if member_of(current_group) && !owner_of(current_group) %>
+        <%= link_to "Leave Group", leave_group_path, method: :post, class: "btn-small red", data: {confirm: "Are you sure you want to leave the group?"} %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
