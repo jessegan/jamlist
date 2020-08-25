@@ -17,4 +17,8 @@ class Member < ApplicationRecord
         self.user.display_name
     end
 
+    def owner_of_group
+        self.group.owner == self.user
+    end
+
 end
