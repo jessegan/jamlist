@@ -1,24 +1,52 @@
-<!-- User's Created Groups -->
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<h1>Your Owned Groups</h1>
-<ul>
-    <% current_user.owned_groups.each do |g| %>
-        <li><%= link_to g.name,g %></li>
-    <% end %>
-</ul>
+<!-- Main Content -->
 
-<%= button_to "Create Group", new_group_path, method: :get %>
+<div class="container">
+    <!-- User's Created Groups -->
+    <div class="row">
 
-<!-- User's Joined Groups -->
+        <h3 class="col s12">Owned Groups <%= link_to "Create Group", new_group_path, class: "btn-small" %></h3> 
 
-<h1>Groups</h1>
-<ul>
-    <% current_user.groups_joined_not_owned.each do |g| %>
-      <li><%= link_to g.name, g %></li>
-    <% end %>
-</ul>
+        <div class="col s12">
+            <div class="row">
+                <% current_user.owned_groups.each do |g| %>
+                    <div class="card col s5" style="margin: 10px;">
+                        <a href="<%= group_path(g) %>">
+                            <div class="card-content black-text">
+                                <span class="card-title"><%= g.name %></span>
+                                <p><%= pluralize(g.members_count, "Member") %><p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            </div>
 
-<!-- Browse Groups -->
-<div>
-    <%= button_to "Browse Groups", groups_path, method: :get %>
+        </div>
+    </div>
+
+    <!-- User's Joined Groups -->
+
+    <div class="row">
+
+        <h3 class="col s12">Joined Groups <%= link_to "Browse Groups", groups_path, class: "btn-small" %></h3> 
+
+        <div class="col s12">
+            <div class="row">
+                <% current_user.groups_joined_not_owned.each do |g| %>
+                    <div class="card col s5" style="margin: 10px;">
+                        <a href="<%= group_path(g) %>">
+                            <div class="card-content black-text">
+                                <span class="card-title"><%= g.name %></span>
+                                <p><%= pluralize(g.members_count, "Member") %><p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+    </div>
+
 </div>
