@@ -1,6 +1,20 @@
-<h1>Browse Groups</h1>
-<ul>
-    <% @groups.each do |g| %>
-        <li><%= link_to g.name,g %><%= ' [joined]' if member_of(g) %></li>
-    <% end %>
-</ul>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
+
+<!-- Main Content -->
+
+<div class="container">
+
+    <div class="row">
+        <h3 class="col s12">Public Groups</h3>
+    </div>
+
+    <div class="row">
+
+        <% @groups.each do |g| %>
+            <%= render partial: 'group_card', locals: {g: g} %>
+        <% end %>
+
+    </div>
+
+</div>
