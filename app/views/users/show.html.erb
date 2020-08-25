@@ -1,14 +1,44 @@
-<!-- Profile Image -->
-<img src="<%= @user_profile.image %>">
-<!-- Display Name -->
-<h1><%= @user_profile.display_name %></h1>
-<!-- Owned Groups -->
-<h3>Owned Groups</h3>
-<% @user_profile.owned_groups_public_only.each do |g| %>
-    <li><%= link_to g.name,g %></li>
-<% end %>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<% if viewing_current_user %>
-    <%= button_to "Edit Profile", edit_user_path(@user_profile), method: :get %>
-    <%= button_to "Logout", logout_path %>
-<% end %>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <!-- Profile Image -->
+        <div class="col s3 valign-wrapper" style="margin-top: 10px;">
+            <%= image_tag @user_profile.image, class: "circle", width: "80%", height: "80%" %>
+        </div>
+        <!-- Display Name -->
+        <div class="col s9">
+            <h1><%= @user_profile.display_name %></h1>
+            <% if viewing_current_user %>
+                <%= link_to "Edit Profile", edit_user_path(@user_profile), class: "btn-small" %>
+                <%= link_to "Logout", logout_path, method: :post, class: "btn-small red white-text" %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Owned Groups -->
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <h3 class="col s12">Owned Groups</h3>
+            </div>
+            
+            
+            <div class="row">
+                <% @user_profile.owned_groups_public_only.each do |g| %>
+                    <div class="card col s5" style="margin: 10px;">
+                        <div class="card-content">
+                            <span class="card-title"><%= g.name %></span>
+                            <p><%= pluralize(g.members.count, "Member") %><p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+</div>
