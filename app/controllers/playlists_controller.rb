@@ -137,6 +137,8 @@ class PlaylistsController < ApplicationController
     def sync
         # TODO: Add flash alert
         current_playlist.sync_tracks_to_spotify
+
+        redirect_to [current_group,current_playlist]
     end
 
     ### METHODS
