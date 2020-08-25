@@ -13,6 +13,7 @@ class Track < ApplicationRecord
 
     validates :name, presence: true
     validates :spotify_id, uniqueness: true
+    attribute :image, :stirng, default: "music.png"
 
     ### CALLBACKS
 
