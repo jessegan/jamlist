@@ -18,6 +18,7 @@ class Group < ApplicationRecord
 
     ### SCOPES
 
+    default_scope { order(name: :asc)}
     scope :public_only, -> {where(public: true)}
     scope :private_only, -> {where(public: false)}
 
