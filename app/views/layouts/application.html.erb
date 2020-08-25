@@ -35,6 +35,25 @@
     </div>
 
     <!-- MAIN CONTENT -->
+    <% if flash.alert || flash.notice %>
+      <div style="position: fixed; z-index: 10; margin-left: 5px; margin-top: 5px;">
+
+        <% if flash.alert %>
+          <div class="card red lighten-5" style="padding: 10px;">
+            <%= flash.alert %>
+          </div>
+        <% end %>
+
+        <% if flash.notice %>
+          <div class="card red lighten-5" style="padding: 10px;">
+            <%= flash.notice %>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
+    
+
       <%= yield %>
 
 
