@@ -1,17 +1,52 @@
-<h1>Remove Songs</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= form_with url: tracks_group_playlist_path(current_group,current_playlist) , method: "patch", local:true do %>
-    <% current_playlist.tracks.each do |t| %>
-        <div>
-            <%= check_box_tag 'tracks[]', t.id %>
-            <%= t.name %>
+<!-- Main Content -->
+
+<div class="container">
+
+    <div class="row"> 
+        <div class="col s12">
+            <h3>Remove Songs</h1>
         </div>
-    <% end %>
-
-    <br>
-
-    <div>
-        <%= submit_tag "Remove Songs" %>
     </div>
 
-<% end %>
+    <div class="row">
+        <%= form_with url: tracks_group_playlist_path(current_group,current_playlist) , method: "patch", class: "col s12", local:true do %>
+            <div class="row">
+                <div class="col s12">
+
+                    <ul class="collection">
+
+                        <%= collection_check_boxes :tracks,:ids, current_playlist.tracks, :id, :name, include_hidden: false do |track| %>
+                            
+
+                                <li class="collection-item avatar black-text" style="padding-left: 100px">
+                                    <%= image_tag track.object.image, class: "circle", style: "border-radius: 0; width: 64px; height: 64px;" %>
+
+                                    <%= content_tag :span, content_tag(:strong,track.object.name), class: "title" %>
+                                    <%= content_tag :p, display_rspotify_artist_names(track.object) %>
+                                    
+                                    <div class="secondary-content">
+                                        <label>
+                                            <%= track.check_box class: "filled-in" %>
+                                            <%= content_tag :span, "Check to Remove" %>
+                                        </label>
+                                    </div>
+                                </li>
+
+                            
+                        <% end %>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div>
+                <%= submit_tag "Remove Songs" %>
+            </div>
+
+        <% end %>
+    </div>
+</div>
