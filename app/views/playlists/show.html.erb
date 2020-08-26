@@ -1,25 +1,67 @@
-<h1><%= current_playlist.name %></h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= button_to "Open in Spotify", "spotify:playlist:#{current_playlist.spotify_id}", method: :get, target: :_blank %>
+<!-- Main Content -->
 
-<br>
+<div class="container">
 
-<% if admin_of(current_group) %>
-  <%= button_to "Sync to Spotify", tracks_group_playlist_path(current_group,current_playlist), method: :post %>
-<% end %>
+  <div class="row valign-wrapper">
+    <div class="col s8">
+      <h2><%= current_playlist.name %></h2>
+    </div>
+    <div class="col s4">
+      <%= link_to content_tag(:div, image_tag("spotify.png", size: "30") + "Open in Spotify", class: "valign-wrapper"), "spotify:playlist:#{current_playlist.spotify_id}", class: "btn-large black white-text" %>
+    </div>
+  </div>
 
-<h3>Tracks</h3>
-<ul>
-<% @tracks.each do |t| %>
-    <li><%= t.name %></li>
-<% end %>
-</ul>
+  <div class="divider"></div>
+  <br>
 
-<% if member_of(current_group) %>
-  <%= button_to "Add Songs", tracks_group_playlist_path(current_group,current_playlist), method: :get %>  
-<% end %>
+  <% if admin_of(current_group) %>
 
-<% if admin_of(current_group) %>
-    <%= button_to "Remove Songs", edit_tracks_group_playlist_path(current_group,current_playlist), method: :get %>
-    <%= button_to "Edit", edit_group_playlist_path(current_group,current_playlist), method: :get %>
-<% end %>
+    <div class="row">
+      <div class="col s12">
+        <%= link_to "Sync to Spotify", tracks_group_playlist_path(current_group,current_playlist), method: :post, class: "btn" %>
+        <%= link_to "Edit Playlist", edit_group_playlist_path(current_group,current_playlist), class: "btn" %>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+  <% end %>
+
+  <div class="row valign-wrapper">
+    <div class="col s8">
+      <h3>Tracks</h3>
+    </div>
+
+    <div class="col s4">
+      <% if member_of(current_group) %>
+        <%= link_to "Add Songs", tracks_group_playlist_path(current_group,current_playlist), class: "btn-small" %>  
+      <% end %>
+
+      <% if admin_of(current_group) %>
+          <%= link_to "Remove Songs", edit_tracks_group_playlist_path(current_group,current_playlist), class: "btn-small" %>
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="collection">
+        <% @tracks.each do |track| %>
+            <li class="collection-item avatar" style="padding-left: 100px">
+              <%= image_tag track.image, class: "circle", style: "border-radius: 0; width: 64px; height: 64px;" %>
+
+              <%= content_tag :span, track.name, class: "title" %>
+              <%= content_tag :p, display_rspotify_artist_names(track) %>
+            </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+
+</div>
