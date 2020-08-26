@@ -32,7 +32,7 @@
                     <li class="collection-item avatar" style="padding-left: 100px">
                         <%= image_tag track.album.images.first["url"], class: "circle", style: "border-radius: 0; width: 64px; height: 64px;" %>
 
-                        <%= content_tag :span, track.name, class: "title" %>
+                        <%= content_tag :span, content_tag(:strong,track.name), class: "title" %>
                         <%= content_tag :p, display_rspotify_artist_names(track) %>
 
                         <% if current_playlist.has_track_with_id(track.id) %>
