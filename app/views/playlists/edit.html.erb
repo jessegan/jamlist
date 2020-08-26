@@ -1,8 +1,28 @@
-<h1>Edit Playlist</h1>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<%= render partial: "form", locals: {playlist: current_playlist, btn_name: "Save"} %>
+<!-- Main Content -->
 
+<div class="container">
 
-<% if admin_of(current_group) %>
-    <%= button_to "DELETE PLAYLIST", [current_group,current_playlist], method: :delete, data: {confirm: "Are you sure you want to delete the playlist?"} %>
-<% end %>
+    <div class="row">
+        <div class="col s12">
+            <h3>Edit Playlist</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <%= render partial: "form", locals: {playlist: current_playlist, btn_name: "Save"} %>
+    </div>
+
+    <% if admin_of(current_group) %>
+        <div class="divider"></div> <br>
+
+        <div class="row">
+            <div class="col s12">
+                <%= link_to "Delete Playlist", [current_group,current_playlist], method: :delete, class: "btn red", data: {confirm: "Are you sure you want to delete the playlist?"} %>
+            </div>
+        </div>
+    <% end %>
+
+</div>
