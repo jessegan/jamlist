@@ -28,9 +28,8 @@ class Track < ApplicationRecord
         if Track.exists?(spotify_id: rspotify_track.id)
             track = Track.find_by(spotify_id: rspotify_track.id)
         else 
-            track = Track.create(name: rspotify_track.name, spotify_id: rspotify_track.id, duration: rspotify_track.duration_ms, track_number: rspotify_track.track_number)
+            track = Track.create(name: rspotify_track.name, spotify_id: rspotify_track.id, duration: rspotify_track.duration_ms, track_number: rspotify_track.track_number, image: rspotify_track.album.images.first["url"])
 
-            
             rspotify_track.artists.each do |rspotify_artist|
                 track.artists << Artist.find_or_create_by(spotify_id: rspotify_artist.id) do |artist|
                     artist.name = rspotify_artist.name
