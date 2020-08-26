@@ -1,16 +1,51 @@
-<h1>Search for Tracks</h1>
-<!-- Search bar -->
-<%= form_with(url: tracks_group_playlist_path(current_group,current_playlist), method: "get", local: true) do %>
-    <%= label_tag :q, "Search: " %>
-    <%= text_field_tag :q, params[:q] %>
-    <%= submit_tag "Search" %>
-<% end %>
+<!-- Background image -->
+<%= image_tag "background.png", style: "z-index: -1; position:fixed; opacity: 0.9; width: 100vw; height: 100vh;" %>
 
-<br>
+<!-- Main Content -->
 
-<!-- List of Tracks as result of search -->
+<div class="container">
 
-<% @tracks.each do |track| %>
-    <li><%= track.name + " by " + display_rspotify_artist_names(track) %></li>
-    <%= button_to "Add Track", add_track_group_playlist_path(current_group,current_playlist,track.id), method: :post %>
-<% end %>
+    <div class="row">
+        <h3 class="col s12">Search for Tracks</h3>
+    </div>
+        
+    <!-- Search bar -->
+    <div class="row">
+        <%= form_with(url: tracks_group_playlist_path(current_group,current_playlist), method: "get", local: true, class: "col s12") do %>
+            <div class="row">
+                <div class="input-field col s6">
+                    <%= text_field_tag :q, params[:q], placeholder: "Search by Track Title" %>
+                    <%= submit_tag "Search", class: "btn-small" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+    <br>
+
+    <!-- List of Tracks as result of search -->
+    <div class="row">
+        <div class="col s12">
+            <ul class="collection">
+
+                <% @tracks.each do |track| %>
+                    <li class="collection-item avatar" style="padding-left: 100px">
+                        <%= image_tag track.album.images.first["url"], class: "circle", style: "border-radius: 0; width: 64px; height: 64px;" %>
+
+                        <%= content_tag :span, track.name, class: "title" %>
+                        <%= content_tag :p, display_rspotify_artist_names(track) %>
+
+                        <% if current_playlist.has_track_with_id(track.id) %>
+                            <%= content_tag :p, "Already Added", class: "secondary-content" %>
+                        <% else %>
+                            <%= link_to "Add Track", add_track_group_playlist_path(current_group,current_playlist,track.id), method: :post, class: "secondary-content" %>
+                        <% end %>
+                    </li>
+                <% end %>
+
+            </ul>
+
+        </div>
+    </div>
+
+</div>
