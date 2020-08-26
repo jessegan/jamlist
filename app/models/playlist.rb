@@ -34,6 +34,13 @@ class Playlist < ApplicationRecord
         tracks
     end
     
+    # Checks if a spotify id exists in playlist
+    # @param spotify_id [string] the spotify id to check tracks in playlist
+    # @return [boolean] the result of the spotify id check
+    def has_track_with_id(spotify_id)
+        self.tracks.exists?(spotify_id: spotify_id)
+    end
+
     # Return the number of tracks 
     # @return [Integer] the number of Tracks
     def track_count
