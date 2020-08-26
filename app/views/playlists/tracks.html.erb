@@ -21,7 +21,7 @@
         <%= form_with(url: tracks_group_playlist_path(current_group,current_playlist), method: "get", local: true, class: "col s12") do %>
             <div class="row">
                 <div class="input-field col s6">
-                    <%= text_field_tag :q, params[:q], placeholder: "Search by Track Title" %>
+                    <%= text_field_tag :q, params[:q], placeholder: "Search by Track Title", autocomplete: "off" %>
                     <%= submit_tag "Search", class: "btn-small" %>
                 </div>
             </div>
