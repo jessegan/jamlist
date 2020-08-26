@@ -11,6 +11,10 @@ class Playlist < ApplicationRecord
     validates :name, {presence: true, uniqueness: {scope: :group, message: "should be unique per group"}}
     validates :description, length: {maximum: 500}
 
+    ### SCOPES
+
+    default_scope {order(name: :asc)}
+
     ### INSTANCE METHODS
 
     # Adds track to playlist
