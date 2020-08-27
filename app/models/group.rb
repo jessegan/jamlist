@@ -35,7 +35,7 @@ class Group < ApplicationRecord
     end
 
     def admin_users
-        self.users.merge(Member.admins)
+        self.users.merge(self.admins)
     end
 
     def admins
