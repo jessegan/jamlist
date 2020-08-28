@@ -1,24 +1,29 @@
-# README
+# Jamlist
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Jamlist is a web application that allows users to create groups and collaboratively create Spotify playlists. Playlists are synced directly with Spotify, allowing users to easily jam out to the playlists they create.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Download or clone the files from [GitHub](https://github.com/jessegan/jamlist).
 
-* System dependencies
+From the main directory of the project, run the following command in console:
+```bash
+bundle install
+```
 
-* Configuration
+## Usage
 
-* Database creation
+From the main directory of the project, run the following command to run the application locally:
+```bash
+rails s
+```
 
-* Database initialization
+This will start a local instance of the application at http://localhost:3000
 
-* How to run the test suite
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-* Services (job queues, cache servers, search engines, etc.)
+Please make sure to update tests as appropriate.
 
-* Deployment instructions
-
-* ...
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
