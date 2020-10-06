@@ -1,4 +1,8 @@
+![Jamlist Logo](../media/jamlist_logo.png?raw=true)
+
 # Jamlist - Collaborative Spotify Playlist Creator
+
+![Jamlist Homescreen](../media/jamlist_homepage.png?raw=true)
 
 Jamlist is a collaborative Spotify playlist creator for groups and communities. Users can create and join groups with their friends, create playlists together by searching for and adding songs on the app, and finally have those playlists Sync directly to Spotify.
 
