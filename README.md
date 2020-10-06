@@ -1,4 +1,4 @@
-![Jamlist Logo](../media/jamlist_logo.png?raw=true)
+![Jamlist Logo](../media/jamlist_logo_400x400.png?raw=true)
 
 # Jamlist - Collaborative Spotify Playlist Creator
 
