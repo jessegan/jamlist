@@ -2,15 +2,11 @@
 
 # Jamlist - Collaborative Spotify Playlist Creator
 
-![Jamlist Homescreen](../media/jamlist_homepage.png?raw=true)
-
 Jamlist is a collaborative Spotify playlist creator for groups and communities. Users can create and join groups with their friends, create playlists together by searching for and adding songs on the app, and finally have those playlists Sync directly to Spotify.
 
 Built on Ruby on Rails. Styled with Materializecss.
 
-[Blog](https://medium.com/@jesse.gan/flatiron-blog-4-exploring-the-magic-of-rails-and-activerecord-6000f17d084b)
-
-[Database Schema](https://lucid.app/invitations/accept/7d44ec59-bc1e-450f-a0fd-8f8b1244f1c4)
+[Blog](https://medium.com/@jesse.gan/flatiron-blog-4-exploring-the-magic-of-rails-and-activerecord-6000f17d084b) | [Database Schema](https://lucid.app/invitations/accept/7d44ec59-bc1e-450f-a0fd-8f8b1244f1c4)
 
 ## Installation
 
